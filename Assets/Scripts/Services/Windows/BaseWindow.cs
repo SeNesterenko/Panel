@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace DefaultNamespace
+namespace Services.Windows
 {
     public abstract class BaseWindow : MonoBehaviour
     {

@@ -1,4 +1,4 @@
-namespace DefaultNamespace
+namespace Transponder
 {
     public enum ActionButtonType
     {

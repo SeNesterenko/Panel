@@ -23,7 +23,7 @@ namespace Transponder
         public void UpdateData(ActionButtonData data)
         {
             Data = data;
-            //_display.SetState(data.PresetData, data.IsHighlighted);
+            _display.SetState(data.PresetData, data.IsHighlighted);
         }
     }
 }

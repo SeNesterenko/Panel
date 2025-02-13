@@ -11,7 +11,7 @@ namespace DefaultNamespace.Services.Windows
     {
         private const string WINDOWS_CONFIG_PATH = "Configs/WindowsConfig";
 
-        private readonly Dictionary<WindowType, BaseWindow> _windows;
+        private readonly IReadOnlyDictionary<WindowType, BaseWindow> _windows;
         private readonly Dictionary<WindowType, BaseWindow> _instantiatedWindows = new();
         private readonly Transform _windowRoot;
 
@@ -20,8 +20,7 @@ namespace DefaultNamespace.Services.Windows
             _windowRoot = windowRoot;
             
             _windows = Resources
-                .LoadAll<WindowsConfig>(WINDOWS_CONFIG_PATH)
-                .First()
+                .Load<WindowsConfig>(WINDOWS_CONFIG_PATH)
                 .Windows;
         }
         

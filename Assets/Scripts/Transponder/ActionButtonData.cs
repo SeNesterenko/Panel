@@ -2,13 +2,13 @@ namespace Transponder
 {
     public class ActionButtonData
     {
-        public string Text { get; }
+        public ButtonPresetData PresetData { get; }
         public bool IsHighlighted { get; }
         public ActionButtonType Type { get; }
 
-        public ActionButtonData(string text, bool isHighlighted, ActionButtonType type)
+        public ActionButtonData(ButtonPresetData presetData, bool isHighlighted, ActionButtonType type)
         {
-            Text = text;
+            PresetData = presetData;
             IsHighlighted = isHighlighted;
             Type = type;
         }

@@ -2,6 +2,8 @@ namespace Transponder
 {
     public enum PanelState
     {
-        Code,
+        Default,
+        CODE,
+        XPDR,
     }
 }

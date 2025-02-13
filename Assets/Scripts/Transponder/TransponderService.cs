@@ -1,9 +1,12 @@
 using DefaultNamespace.Services.Windows;
+using JetBrains.Annotations;
 using UnityEngine;
+using VContainer.Unity;
 
 namespace Transponder
 {
-    public class TransponderService
+    [UsedImplicitly] //Register in DI Container
+    public class TransponderService : IStartable
     {
         private readonly IWindowFactory _windowFactory;
         private readonly ILocatorController _locatorController;
@@ -17,6 +20,9 @@ namespace Transponder
             _locatorController = locatorController;
             _panelController = panelController;
         }
+
+        public void Start() => 
+            ShowWindow();
 
         public void ShowWindow()
         {

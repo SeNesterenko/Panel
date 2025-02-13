@@ -8,20 +8,15 @@ namespace Transponder
     {
         [SerializeField] private TextMeshProUGUI _text;
         [SerializeField] private Image _background;
-        
-        [Header("Color Settings")]
-        [SerializeField] private Color _defaultTextColor;
-        [SerializeField] private Color _highlightedTextColor;
-        
-        [SerializeField] private Color _defaultBackgroundColor;
-        [SerializeField] private Color _highlightedBackgroundColor;
-        
-        public void SetState(string text, bool isHighlighted)
+
+        public void SetState(ButtonPresetData presetData, bool isHighlighted)
         {
-            _text.color = isHighlighted ? _highlightedTextColor : _defaultTextColor;
-            _background.color = isHighlighted ? _highlightedBackgroundColor : _defaultBackgroundColor;
+            var (textColor, backgroundColor) = presetData.GetColorSettings(isHighlighted);
             
-            _text.text = text;
+            _text.color = textColor;
+            _background.color = backgroundColor;
+            
+            _text.text = presetData.Name;
         }
     }
 }

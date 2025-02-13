@@ -1,0 +1,149 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35065f511b0f4c3db565e39307a8253a, type: 3}
+  m_Name: ButtonsPreset
+  m_EditorClassIdentifier: 
+  _buttons:
+    _serializedList:
+    - Key: 0
+      Value:
+        _name: 
+        _highlightedBackgroundColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+        _defaultBackgroundColor: {r: 0.1254902, g: 0.1254902, b: 0.1254902, a: 1}
+        _highlightedTextColor: {r: 0.12941177, g: 0.12941177, b: 0.12941177, a: 1}
+        _defaultTextColor: {r: 0.98823535, g: 0.98823535, b: 0.98823535, a: 1}
+    - Key: 1
+      Value:
+        _name: INSET
+        _highlightedBackgroundColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+        _defaultBackgroundColor: {r: 0.1254902, g: 0.1254902, b: 0.1254902, a: 1}
+        _highlightedTextColor: {r: 0.12941177, g: 0.12941177, b: 0.12941177, a: 1}
+        _defaultTextColor: {r: 0.98823535, g: 0.98823535, b: 0.98823535, a: 1}
+    - Key: 2
+      Value:
+        _name: PFD
+        _highlightedBackgroundColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+        _defaultBackgroundColor: {r: 0.1254902, g: 0.1254902, b: 0.1254902, a: 1}
+        _highlightedTextColor: {r: 0.12941177, g: 0.12941177, b: 0.12941177, a: 1}
+        _defaultTextColor: {r: 0.98823535, g: 0.98823535, b: 0.98823535, a: 1}
+    - Key: 3
+      Value:
+        _name: OBS
+        _highlightedBackgroundColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+        _defaultBackgroundColor: {r: 0.1254902, g: 0.1254902, b: 0.1254902, a: 1}
+        _highlightedTextColor: {r: 0.12941177, g: 0.12941177, b: 0.12941177, a: 1}
+        _defaultTextColor: {r: 0.98823535, g: 0.98823535, b: 0.98823535, a: 1}
+    - Key: 4
+      Value:
+        _name: CDI
+        _highlightedBackgroundColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+        _defaultBackgroundColor: {r: 0.1254902, g: 0.1254902, b: 0.1254902, a: 1}
+        _highlightedTextColor: {r: 0.12941177, g: 0.12941177, b: 0.12941177, a: 1}
+        _defaultTextColor: {r: 0.98823535, g: 0.98823535, b: 0.98823535, a: 1}
+    - Key: 5
+      Value:
+        _name: ADF/DME
+        _highlightedBackgroundColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+        _defaultBackgroundColor: {r: 0.1254902, g: 0.1254902, b: 0.1254902, a: 1}
+        _highlightedTextColor: {r: 0.12941177, g: 0.12941177, b: 0.12941177, a: 1}
+        _defaultTextColor: {r: 0.98823535, g: 0.98823535, b: 0.98823535, a: 1}
+    - Key: 6
+      Value:
+        _name: XPDR
+        _highlightedBackgroundColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+        _defaultBackgroundColor: {r: 0.1254902, g: 0.1254902, b: 0.1254902, a: 1}
+        _highlightedTextColor: {r: 0.12941177, g: 0.12941177, b: 0.12941177, a: 1}
+        _defaultTextColor: {r: 0.98823535, g: 0.98823535, b: 0.98823535, a: 1}
+    - Key: 7
+      Value:
+        _name: IDENT
+        _highlightedBackgroundColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+        _defaultBackgroundColor: {r: 0.1254902, g: 0.1254902, b: 0.1254902, a: 1}
+        _highlightedTextColor: {r: 0.12941177, g: 0.12941177, b: 0.12941177, a: 1}
+        _defaultTextColor: {r: 0.98823535, g: 0.98823535, b: 0.98823535, a: 1}
+    - Key: 8
+      Value:
+        _name: TMR/REF
+        _highlightedBackgroundColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+        _defaultBackgroundColor: {r: 0.1254902, g: 0.1254902, b: 0.1254902, a: 1}
+        _highlightedTextColor: {r: 0.12941177, g: 0.12941177, b: 0.12941177, a: 1}
+        _defaultTextColor: {r: 0.98823535, g: 0.98823535, b: 0.98823535, a: 1}
+    - Key: 9
+      Value:
+        _name: NRST
+        _highlightedBackgroundColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+        _defaultBackgroundColor: {r: 0.1254902, g: 0.1254902, b: 0.1254902, a: 1}
+        _highlightedTextColor: {r: 0.12941177, g: 0.12941177, b: 0.12941177, a: 1}
+        _defaultTextColor: {r: 0.98823535, g: 0.98823535, b: 0.98823535, a: 1}
+    - Key: 10
+      Value:
+        _name: ALERTS
+        _highlightedBackgroundColor: {r: 1, g: 1, b: 1, a: 1}
+        _defaultBackgroundColor: {r: 1, g: 1, b: 1, a: 1}
+        _highlightedTextColor: {r: 0.1137255, g: 0.1137255, b: 0.1137255, a: 1}
+        _defaultTextColor: {r: 0.1137255, g: 0.1137255, b: 0.1137255, a: 1}
+    - Key: 11
+      Value:
+        _name: STBY
+        _highlightedBackgroundColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+        _defaultBackgroundColor: {r: 0.1254902, g: 0.1254902, b: 0.1254902, a: 1}
+        _highlightedTextColor: {r: 0.09019608, g: 0.09019608, b: 0.09019608, a: 1}
+        _defaultTextColor: {r: 1, g: 1, b: 1, a: 1}
+    - Key: 12
+      Value:
+        _name: ON
+        _highlightedBackgroundColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+        _defaultBackgroundColor: {r: 0.1254902, g: 0.1254902, b: 0.1254902, a: 1}
+        _highlightedTextColor: {r: 0.09019608, g: 0.09019608, b: 0.09019608, a: 1}
+        _defaultTextColor: {r: 1, g: 1, b: 1, a: 1}
+    - Key: 13
+      Value:
+        _name: ALT
+        _highlightedBackgroundColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+        _defaultBackgroundColor: {r: 0.1254902, g: 0.1254902, b: 0.1254902, a: 1}
+        _highlightedTextColor: {r: 0.09019608, g: 0.09019608, b: 0.09019608, a: 1}
+        _defaultTextColor: {r: 1, g: 1, b: 1, a: 1}
+    - Key: 14
+      Value:
+        _name: GND
+        _highlightedBackgroundColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+        _defaultBackgroundColor: {r: 0.1254902, g: 0.1254902, b: 0.1254902, a: 1}
+        _highlightedTextColor: {r: 0.09019608, g: 0.09019608, b: 0.09019608, a: 1}
+        _defaultTextColor: {r: 1, g: 1, b: 1, a: 1}
+    - Key: 15
+      Value:
+        _name: VFR
+        _highlightedBackgroundColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+        _defaultBackgroundColor: {r: 0.1254902, g: 0.1254902, b: 0.1254902, a: 1}
+        _highlightedTextColor: {r: 0.09019608, g: 0.09019608, b: 0.09019608, a: 1}
+        _defaultTextColor: {r: 1, g: 1, b: 1, a: 1}
+    - Key: 16
+      Value:
+        _name: CODE
+        _highlightedBackgroundColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+        _defaultBackgroundColor: {r: 0.1254902, g: 0.1254902, b: 0.1254902, a: 1}
+        _highlightedTextColor: {r: 0.09019608, g: 0.09019608, b: 0.09019608, a: 1}
+        _defaultTextColor: {r: 1, g: 1, b: 1, a: 1}
+    - Key: 17
+      Value:
+        _name: BACK
+        _highlightedBackgroundColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+        _defaultBackgroundColor: {r: 0.1254902, g: 0.1254902, b: 0.1254902, a: 1}
+        _highlightedTextColor: {r: 0.09019608, g: 0.09019608, b: 0.09019608, a: 1}
+        _defaultTextColor: {r: 1, g: 1, b: 1, a: 1}
+    - Key: 18
+      Value:
+        _name: BKSP
+        _highlightedBackgroundColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+        _defaultBackgroundColor: {r: 0.1254902, g: 0.1254902, b: 0.1254902, a: 1}
+        _highlightedTextColor: {r: 0.09019608, g: 0.09019608, b: 0.09019608, a: 1}
+        _defaultTextColor: {r: 1, g: 1, b: 1, a: 1}

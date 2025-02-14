@@ -21,5 +21,6 @@ namespace Transponder
         CODE,
         BACK,
         BKSP,
+        Press,
     }
 }

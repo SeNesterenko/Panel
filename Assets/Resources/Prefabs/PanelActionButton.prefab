@@ -507,7 +507,7 @@ GameObject:
   - component: {fileID: 4242859111998071205}
   - component: {fileID: 9068158156064120752}
   m_Layer: 5
-  m_Name: PanelActionButtonContainer
+  m_Name: PanelActionButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -533,7 +533,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 12.175476, y: 0}
-  m_SizeDelta: {x: 140, y: 100}
+  m_SizeDelta: {x: 141, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &9068158156064120752
 MonoBehaviour:
@@ -549,4 +549,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _button: {fileID: 4269439761637042405}
   _display: {fileID: 3497471916888127103}
-  <Type>k__BackingField: 0

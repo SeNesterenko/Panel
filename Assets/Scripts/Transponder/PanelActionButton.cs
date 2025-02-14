@@ -13,8 +13,6 @@ namespace Transponder
         [SerializeField] private Button _button;
         [SerializeField] private PanelActionButtonDisplay _display;
 
-        [field: SerializeField] public ActionButtonType Type { get; private set; }
-
         public ActionButtonData Data { get; private set; }
         
         public void Initialize(IEventReceiver eventReceiver) => 

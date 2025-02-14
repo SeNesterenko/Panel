@@ -7,7 +7,7 @@ namespace Transponder
     [CreateAssetMenu(menuName = "Configs/ButtonsPreset", fileName = "ButtonsPreset")]
     public class ButtonsPreset : ScriptableObject
     {
-        [field: SerializeField] private SerializedDictionary<ActionButtonType, ButtonPresetData> _buttons;
+        [SerializeField] private SerializedDictionary<ActionButtonType, ButtonPresetData> _buttons;
         
         public IReadOnlyDictionary<ActionButtonType, ButtonPresetData> Buttons => _buttons;
     }

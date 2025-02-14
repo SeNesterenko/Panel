@@ -18,6 +18,8 @@ namespace DefaultNamespace.Services
             
             builder.Register<ILocatorController, LocatorController>(Lifetime.Singleton);
             builder.Register<IPanelController, PanelController>(Lifetime.Singleton);
+            builder.Register<IPanelButtonsFactory, PanelButtonsFactory>(Lifetime.Singleton);
+            builder.Register<IPanelConfigProvider, PanelConfigProvider>(Lifetime.Singleton);
             builder.Register<IWindowFactory, WindowFactory>(Lifetime.Singleton);
         }
     }

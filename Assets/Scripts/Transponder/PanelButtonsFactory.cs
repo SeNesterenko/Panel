@@ -12,6 +12,7 @@ namespace Transponder
         private readonly IPanelConfigProvider _configProvider;
         
         private PanelActionButton _buttonPrefab;
+        private List<PanelActionButton> _buttons;
 
         public PanelButtonsFactory(IPanelConfigProvider configProvider) => 
             _configProvider = configProvider;
@@ -27,14 +28,32 @@ namespace Transponder
                 
                 view.Initialize(receiver);
                 view.UpdateData(new ActionButtonData(presetData, false, type));
+                
+                buttons.Add(view);
             }
 
+            if (_buttons is null || _buttons.Count > 0)
+                _buttons = buttons;
+            else
+            {
+                Dispose();
+                _buttons = buttons;
+            }
             return buttons;
         }
         
         private PanelActionButton GetPrefab() =>
             _buttonPrefab ? _buttonPrefab : _buttonPrefab = Resources.Load<PanelActionButton>(BUTTON_PREFAB_PATH);
 
-        public void Dispose() { }
+        public void Dispose()
+        {
+            if (_buttons is null)
+                return;
+            
+            foreach (var button in _buttons)
+                Object.Destroy(button);
+
+            _buttons.Clear();
+        }
     }
 }

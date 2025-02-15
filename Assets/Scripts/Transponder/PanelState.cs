@@ -5,5 +5,6 @@ namespace Transponder
         Default,
         CODE,
         XPDR,
+        STBY,
     }
 }

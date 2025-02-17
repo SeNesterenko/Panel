@@ -1,11 +1,14 @@
 using System.Collections.Generic;
 using DefaultNamespace.Services;
-using UnityEngine;
+using Transponder.Buttons.Presenters;
 
 namespace Transponder
 {
     public interface IPanelButtonsFactory : IService
     {
-        public List<PanelActionButton> CreateButtons(PanelState state, Transform root, PanelActionButton.IEventReceiver receiver);
+        public List<BasePanelButtonPresenter> CreateButtons(PanelState state, PanelView panelView,
+            PanelController.IEventReceiver eventReceiver);
+        public List<BasePanelButtonPresenter> UpdateButtonsState(List<BasePanelButtonPresenter> activeButtons,
+            PanelState state, PanelView panelView, PanelController.IEventReceiver eventReceiver);
     }
 }

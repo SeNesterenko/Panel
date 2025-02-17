@@ -7,21 +7,25 @@ namespace Transponder
     {
         public interface IEventReceiver
         {
-            public void OnButtonPressed(PanelActionButton button);
+            public void OnButtonPressed();
         }
 
         [SerializeField] private Button _button;
         [SerializeField] private PanelActionButtonDisplay _display;
 
-        public ActionButtonData Data { get; private set; }
+        public void SetEventReceiver(IEventReceiver eventReceiver) => 
+            _button.onClick.AddListener(eventReceiver.OnButtonPressed);
         
-        public void Initialize(IEventReceiver eventReceiver) => 
-            _button.onClick.AddListener(() => eventReceiver.OnButtonPressed(this));
+        public void RemoveEventReceiver() => 
+            _button.onClick.RemoveAllListeners();
 
-        public void UpdateData(ActionButtonData data)
-        {
-            Data = data;
+        public void UpdateState(ActionButtonData data) => 
             _display.SetState(data.PresetData, data.IsHighlighted);
-        }
+
+        public void SetInteractable(bool isInteractable) => 
+            _button.interactable = isInteractable;
+        
+        public void ChangeDisplayText(string text) =>
+            _display.ChangeDisplayText(text);
     }
 }

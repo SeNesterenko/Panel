@@ -4,7 +4,6 @@ namespace Transponder
     {
         Default,
         CODE,
-        XPDR,
-        STBY,
+        XPDR
     }
 }

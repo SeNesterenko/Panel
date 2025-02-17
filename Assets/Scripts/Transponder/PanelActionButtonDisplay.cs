@@ -18,5 +18,8 @@ namespace Transponder
             
             _text.text = presetData.Name;
         }
+        
+        public void ChangeDisplayText(string text) => 
+            _text.text = text;
     }
 }

@@ -1,6 +1,9 @@
 using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
+using Transponder.Buttons.Presenters;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Transponder
 {
@@ -12,48 +15,152 @@ namespace Transponder
         private readonly IPanelConfigProvider _configProvider;
         
         private PanelActionButton _buttonPrefab;
-        private List<PanelActionButton> _buttons;
+        private readonly List<PanelActionButton> _buttonsViews = new();
+        private readonly Dictionary<ActionButtonType, List<BasePanelButtonPresenter>> _presentersPoolByType = new();
 
         public PanelButtonsFactory(IPanelConfigProvider configProvider) => 
             _configProvider = configProvider;
 
-        public List<PanelActionButton> CreateButtons(PanelState state, Transform root, PanelActionButton.IEventReceiver receiver)
+        public List<BasePanelButtonPresenter> CreateButtons(PanelState state, PanelView panelView,
+            PanelController.IEventReceiver eventReceiver)
         {
-            var buttons = new List<PanelActionButton>();
-            
-            foreach (var type in _configProvider.ButtonsSetup.ButtonsOrderByState[state])
+            var presenters = new List<BasePanelButtonPresenter>();
+
+            for (var index = 0; index < _configProvider.ButtonsSetup.ButtonsOrderByState[state].Count; index++)
             {
-                var presetData = _configProvider.ButtonsPreset.Buttons[type];
-                var view = Object.Instantiate(GetPrefab(), root);
-                
-                view.Initialize(receiver);
-                view.UpdateData(new ActionButtonData(presetData, false, type));
-                
-                buttons.Add(view);
+                var view = Object.Instantiate(GetPrefab(), panelView.Container);
+                presenters.Add(TryCreatePresenter(state, panelView, eventReceiver, index, view));
+                _buttonsViews.Add(view);
             }
 
-            if (_buttons is null || _buttons.Count > 0)
-                _buttons = buttons;
-            else
-            {
-                Dispose();
-                _buttons = buttons;
-            }
-            return buttons;
+            return presenters;
         }
-        
+
+        public List<BasePanelButtonPresenter> UpdateButtonsState(List<BasePanelButtonPresenter> activeButtons,
+            PanelState state, PanelView panelView, PanelController.IEventReceiver eventReceiver)
+        {
+            AddPresentersToPool(activeButtons);
+            var presenters = new List<BasePanelButtonPresenter>();
+
+            for (var index = 0; index < _configProvider.ButtonsSetup.ButtonsOrderByState[state].Count; index++)
+            {
+                var view = _buttonsViews[index];
+                var presenter = TryCreatePresenter(state, panelView, eventReceiver, index, view);
+                presenters.Add(presenter);
+            }
+
+            return presenters;
+        }
+
+        private void AddPresentersToPool(List<BasePanelButtonPresenter> activeButtons)
+        {
+            foreach (var button in activeButtons) 
+                _presentersPoolByType[button.Type].Add(button);
+        }
+
+        private BasePanelButtonPresenter TryCreatePresenter(PanelState state, PanelView panelView, PanelController.IEventReceiver eventReceiver, int index,
+            PanelActionButton view)
+        {
+            var type = _configProvider.ButtonsSetup.ButtonsOrderByState[state][index];
+            var presetData = _configProvider.ButtonsPreset.Buttons[type];
+            var actionButtonData = new ActionButtonData(presetData, false, index);
+            var presenter = GetPresenter(type, view, panelView, actionButtonData, eventReceiver);
+            presenter.UpdateData(actionButtonData, view);
+
+            return presenter;
+        }
+
         private PanelActionButton GetPrefab() =>
             _buttonPrefab ? _buttonPrefab : _buttonPrefab = Resources.Load<PanelActionButton>(BUTTON_PREFAB_PATH);
 
+        private BasePanelButtonPresenter GetPresenter(
+            ActionButtonType type,
+            PanelActionButton view,
+            PanelView panelView,
+            ActionButtonData data,
+            PanelController.IEventReceiver receiver)
+        {
+            BasePanelButtonPresenter result;
+            var isTypeExist = false;
+            
+            if (_presentersPoolByType.TryGetValue(type, out var presenters))
+            {
+                if (presenters.Count > 0)
+                {
+                    result = presenters.Last();
+                    presenters.Remove(result);
+                    return result;
+                }
+
+                isTypeExist = true;
+            }
+            
+            switch (type)
+            {
+                case ActionButtonType.None:
+                case ActionButtonType.INSET:
+                case ActionButtonType.PFD:
+                case ActionButtonType.OBS:
+                case ActionButtonType.CDI:
+                case ActionButtonType.ADF:
+                case ActionButtonType.TMR:
+                case ActionButtonType.NRST:
+                case ActionButtonType.ALERTS:
+                    result = new BasePanelButtonPresenter(view, panelView, type, receiver);
+                    break;
+                case ActionButtonType.XPDR:
+                    result = new XPDRButtonPresenter(view, panelView, type, receiver);
+                    break;
+                case ActionButtonType.IDENT:
+                    result = new IDENTButtonPresenter(view, panelView, type, receiver);
+                    break;
+                case ActionButtonType.STBY:
+                    result = new STBYButtonPresenter(view, panelView, type, receiver);
+                    break;
+                case ActionButtonType.ON:
+                    result = new ONButtonPresenter(data, view, panelView, type, receiver);
+                    break;
+                case ActionButtonType.ALT:
+                    result = new ALTButtonPresenter(view, panelView, type, receiver);
+                    break;
+                case ActionButtonType.GND:
+                    result = new GNDButtonPresenter(view, panelView, type, receiver);
+                    break;
+                case ActionButtonType.VFR:
+                    result = new VFRButtonPresenter(view, panelView, type, receiver);
+                    break;
+                case ActionButtonType.CODE:
+                    result = new CODEButtonPresenter(data, view, panelView, type, receiver);
+                    break;
+                case ActionButtonType.BACK:
+                    result = new BACKButtonPresenter(view, panelView, type, receiver);
+                    break;
+                case ActionButtonType.BKSP:
+                    result = new BKSPButtonPresenter(view, panelView, type, receiver);
+                    break;
+                case ActionButtonType.Press:
+                    result = new PressButtonPresenter(data, view, panelView, type, receiver);
+                    break;
+                default:
+                    Debug.LogError("Invalid button type");
+                    return null;
+            }
+            
+            if (!isTypeExist)
+                _presentersPoolByType.Add(type, new List<BasePanelButtonPresenter>());
+            
+            return result;
+        }
+
         public void Dispose()
         {
-            if (_buttons is null)
+            if (_buttonsViews is null)
                 return;
             
-            foreach (var button in _buttons)
+            foreach (var button in _buttonsViews)
                 Object.Destroy(button);
 
-            _buttons.Clear();
+            _buttonsViews.Clear();
         }
     }
 }

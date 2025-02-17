@@ -4,13 +4,13 @@ namespace Transponder
     {
         public ButtonPresetData PresetData { get; }
         public bool IsHighlighted { get; }
-        public ActionButtonType Type { get; }
+        public int Index { get; }
 
-        public ActionButtonData(ButtonPresetData presetData, bool isHighlighted, ActionButtonType type)
+        public ActionButtonData(ButtonPresetData presetData, bool isHighlighted, int index)
         {
             PresetData = presetData;
             IsHighlighted = isHighlighted;
-            Type = type;
+            Index = index;
         }
     }
 }

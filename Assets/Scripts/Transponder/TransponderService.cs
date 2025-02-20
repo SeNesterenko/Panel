@@ -1,5 +1,7 @@
 using DefaultNamespace.Services.Windows;
 using JetBrains.Annotations;
+using Transponder.Locator;
+using Transponder.Panel;
 using UnityEngine;
 using VContainer.Unity;
 

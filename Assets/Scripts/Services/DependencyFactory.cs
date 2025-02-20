@@ -1,5 +1,8 @@
 using DefaultNamespace.Services.Windows;
 using Transponder;
+using Transponder.Locator;
+using Transponder.Panel;
+using Transponder.Panel.Buttons;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;

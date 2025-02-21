@@ -24,6 +24,7 @@ namespace Transponder.Panel.Buttons.Presenters
 
         private async UniTask HandleActionAsync()
         {
+            _eventReceiver.UpdateCurrentState(PanelState.Default);
             _eventReceiver.SetButtonsLockState(false);
             var previousTitle = _panelView.ModeTitle.text;
             _panelView.ModeTitle.text = IDENT_TEXT;

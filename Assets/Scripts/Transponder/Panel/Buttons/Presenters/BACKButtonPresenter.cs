@@ -18,6 +18,7 @@ namespace Transponder.Panel.Buttons.Presenters
                     _eventReceiver.UpdateCurrentState(PanelState.Default);
                     break;
                 case PanelState.CODE:
+                    _eventReceiver.SetPreviousCodeTitle();
                     _eventReceiver.UpdateCurrentState(PanelState.XPDR);
                     break;
                 case PanelState.Default:

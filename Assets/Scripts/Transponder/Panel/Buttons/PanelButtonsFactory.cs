@@ -139,7 +139,7 @@ namespace Transponder.Panel.Buttons
                     result = new BKSPButtonPresenter(view, panelView, type, receiver);
                     break;
                 case ActionButtonType.Press:
-                    result = new PressButtonPresenter(data, view, panelView, type, receiver);
+                    result = new PressButtonPresenter(view, panelView, type, receiver);
                     break;
                 default:
                     Debug.LogError("Invalid button type");

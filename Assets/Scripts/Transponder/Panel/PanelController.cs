@@ -21,6 +21,7 @@ namespace Transponder.Panel
             public void UpdateCurrentMode(TransmissionMode mode);
             public TransmissionMode GetCurrentMode();
             public void SetButtonsLockState(bool isInteractable);
+            public void SetPreviousCodeTitle();
         }
         
         private readonly IPanelButtonsFactory _factory;
@@ -35,6 +36,8 @@ namespace Transponder.Panel
 
         private CancellationTokenSource _cts;
         private bool _isRIndicationActive;
+        
+        private string _previousCode;
 
         public PanelController(IPanelButtonsFactory factory, IPanelConfigProvider configProvider)
         {
@@ -64,6 +67,10 @@ namespace Transponder.Panel
             }
             
             _currentState = state;
+            
+            if (_currentState is PanelState.CODE)
+                _previousCode = _panelView.CodeTitle.text;
+            
             _buttons = _factory.UpdateButtonsState(_buttons, _currentState, _panelView, this);
         }
 
@@ -103,6 +110,12 @@ namespace Transponder.Panel
         {
             foreach (var button in _buttons) 
                 button.SetInteractable(isInteractable);
+        }
+
+        public void SetPreviousCodeTitle()
+        {
+            if (_currentState is PanelState.CODE)
+                _panelView.CodeTitle.text = _previousCode;
         }
 
         private async UniTask StartRIndication(CancellationToken ct)

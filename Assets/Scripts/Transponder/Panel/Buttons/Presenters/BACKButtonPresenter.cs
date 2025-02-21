@@ -17,10 +17,16 @@ namespace Transponder.Panel.Buttons.Presenters
                 case PanelState.XPDR:
                     _eventReceiver.UpdateCurrentState(PanelState.Default);
                     break;
+                
                 case PanelState.CODE:
                     _eventReceiver.SetPreviousCodeTitle();
+                    
+                    _panelView.CodeTitle.gameObject.SetActive(true);
+                    _panelView.CodeInputTitle.transform.parent.gameObject.SetActive(false);
+                    
                     _eventReceiver.UpdateCurrentState(PanelState.XPDR);
                     break;
+                
                 case PanelState.Default:
                 default:
                     Debug.LogError("Invalid state");

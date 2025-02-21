@@ -10,13 +10,19 @@ namespace Transponder.Panel.Buttons.Presenters
 
         protected override void HandleActionButton()
         {
-            if (_panelView.CodeTitle.text.Length >= 4)
+            if (_panelView.CodeInputTitle.text.Length >= 4)
                 return;
 
-            _panelView.CodeTitle.text += _data.Index;
+            _panelView.CodeInputTitle.text += _data.Index;
+
+            if (_panelView.CodeInputTitle.text.Length < 4) 
+                return;
             
-            if (_panelView.CodeTitle.text.Length >= 4)
-                _eventReceiver.UpdateCurrentState(PanelState.Default);
+            _eventReceiver.UpdateCurrentState(PanelState.Default);
+            _panelView.CodeTitle.text = _panelView.CodeInputTitle.text;
+                
+            _panelView.CodeTitle.gameObject.SetActive(true);
+            _panelView.CodeInputTitle.transform.parent.gameObject.SetActive(false);
         }
 
         public override void UpdateData(ActionButtonData data, PanelActionButton buttonView)

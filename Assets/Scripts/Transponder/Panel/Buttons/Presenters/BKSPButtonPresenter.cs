@@ -13,7 +13,7 @@ namespace Transponder.Panel.Buttons.Presenters
             if (_panelView.CodeTitle.text.Length == 0)
                 return;
             
-            _panelView.CodeTitle.text = _panelView.CodeTitle.text[..^1];
+            _panelView.CodeInputTitle.text = _panelView.CodeTitle.text[..^1];
         }
     }
 }

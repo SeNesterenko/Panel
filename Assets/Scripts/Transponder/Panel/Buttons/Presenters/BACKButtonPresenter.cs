@@ -20,10 +20,7 @@ namespace Transponder.Panel.Buttons.Presenters
                 
                 case PanelState.CODE:
                     _eventReceiver.SetPreviousCodeTitle();
-                    
-                    _panelView.CodeTitle.gameObject.SetActive(true);
-                    _panelView.CodeInputTitle.transform.parent.gameObject.SetActive(false);
-                    
+                    _eventReceiver.ResetInformationSettings();
                     _eventReceiver.UpdateCurrentState(PanelState.XPDR);
                     break;
                 

@@ -16,7 +16,7 @@ namespace Transponder.Panel.Buttons.Presenters
             _panelView.CodeTitle.text = string.Empty;
             
             _panelView.CodeTitle.gameObject.SetActive(false);
-            _panelView.CodeInputTitle.transform.parent.gameObject.SetActive(true);
+            _panelView.InputBackground.gameObject.SetActive(true);
             
             _panelView.CodeInputTitle.text = string.Empty;
         }

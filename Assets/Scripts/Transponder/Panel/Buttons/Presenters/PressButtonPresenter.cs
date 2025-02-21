@@ -15,14 +15,12 @@ namespace Transponder.Panel.Buttons.Presenters
 
             _panelView.CodeInputTitle.text += _data.Index;
 
-            if (_panelView.CodeInputTitle.text.Length < 4) 
+            if (_panelView.CodeInputTitle.text.Length < 4)
                 return;
             
             _eventReceiver.UpdateCurrentState(PanelState.Default);
+            _eventReceiver.ResetInformationSettings();
             _panelView.CodeTitle.text = _panelView.CodeInputTitle.text;
-                
-            _panelView.CodeTitle.gameObject.SetActive(true);
-            _panelView.CodeInputTitle.transform.parent.gameObject.SetActive(false);
         }
 
         public override void UpdateData(ActionButtonData data, PanelActionButton buttonView)

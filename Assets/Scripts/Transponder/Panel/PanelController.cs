@@ -20,7 +20,7 @@ namespace Transponder.Panel
             public void ResetInformationSettings();
             public void UpdateCurrentMode(TransmissionMode mode);
             public TransmissionMode GetCurrentMode();
-            public void SetButtonsLockState(bool isLock);
+            public void SetButtonsLockState(bool isInteractable);
         }
         
         private readonly IPanelButtonsFactory _factory;
@@ -99,10 +99,10 @@ namespace Transponder.Panel
         public TransmissionMode GetCurrentMode() => 
             _currentMode;
 
-        public void SetButtonsLockState(bool isLock)
+        public void SetButtonsLockState(bool isInteractable)
         {
             foreach (var button in _buttons) 
-                button.SetInteractable(isLock);
+                button.SetInteractable(isInteractable);
         }
 
         private async UniTask StartRIndication(CancellationToken ct)

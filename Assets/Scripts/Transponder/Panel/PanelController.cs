@@ -127,7 +127,7 @@ namespace Transponder.Panel
         {
             _isRIndicationActive = false;
             ResetCancellationToken();
-            _panelView.RIndication.SetActive(true);
+            _panelView.RIndication.SetActive(false);
         }
 
 

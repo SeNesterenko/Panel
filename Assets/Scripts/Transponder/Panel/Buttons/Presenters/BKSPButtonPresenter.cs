@@ -10,10 +10,10 @@ namespace Transponder.Panel.Buttons.Presenters
 
         protected override void HandleActionButton()
         {
-            if (_panelView.CodeTitle.text.Length == 0)
+            if (_panelView.CodeInputTitle.text.Length == 0)
                 return;
             
-            _panelView.CodeInputTitle.text = _panelView.CodeTitle.text[..^1];
+            _panelView.CodeInputTitle.text = _panelView.CodeInputTitle.text[..^1];
         }
     }
 }

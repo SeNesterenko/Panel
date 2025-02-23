@@ -1,4 +1,5 @@
 using DefaultNamespace.Services.Windows;
+using MainMenu;
 using Transponder;
 using Transponder.Locator;
 using Transponder.Panel;
@@ -15,10 +16,11 @@ namespace DefaultNamespace.Services
         
         protected override void Configure(IContainerBuilder builder)
         {
-            builder.RegisterEntryPoint<TransponderService>();
+            builder.RegisterEntryPoint<MenuWindowService>();
             
             builder.RegisterComponent(_mainCanvas);
-            
+
+            builder.Register<ITransponderService, TransponderService>(Lifetime.Singleton);
             builder.Register<ILocatorController, LocatorController>(Lifetime.Singleton);
             builder.Register<IPanelController, PanelController>(Lifetime.Singleton);
             builder.Register<IPanelButtonsFactory, PanelButtonsFactory>(Lifetime.Singleton);

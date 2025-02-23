@@ -3,12 +3,11 @@ using JetBrains.Annotations;
 using Transponder.Locator;
 using Transponder.Panel;
 using UnityEngine;
-using VContainer.Unity;
 
 namespace Transponder
 {
     [UsedImplicitly] //Register in DI Container
-    public class TransponderService : IStartable
+    public class TransponderService : ITransponderService
     {
         private readonly IWindowFactory _windowFactory;
         private readonly ILocatorController _locatorController;
@@ -22,9 +21,6 @@ namespace Transponder
             _locatorController = locatorController;
             _panelController = panelController;
         }
-
-        public void Start() => 
-            ShowWindow();
 
         public void ShowWindow()
         {

@@ -7,7 +7,6 @@ using Transponder.Panel.Buttons;
 using Transponder.Panel.Buttons.Presenters;
 using UnityEngine;
 
-//ToDo: Grey OBS button
 namespace Transponder.Panel
 {
     [UsedImplicitly] //Register in DI Container
@@ -25,7 +24,6 @@ namespace Transponder.Panel
         }
         
         private readonly IPanelButtonsFactory _factory;
-        private readonly IPanelConfigProvider _configProvider;
         private readonly ButtonsPreset _buttonsPreset;
         private readonly ButtonsSetup _buttonsSetup;
         
@@ -39,12 +37,9 @@ namespace Transponder.Panel
         
         private string _previousCode;
 
-        public PanelController(IPanelButtonsFactory factory, IPanelConfigProvider configProvider)
-        {
+        public PanelController(IPanelButtonsFactory factory, IPanelConfigProvider configProvider) => 
             _factory = factory;
-            _configProvider = configProvider;
-        }
-        
+
         public void Initialize(PanelView container)
         {
             _panelView = container;

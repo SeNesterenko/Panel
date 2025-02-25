@@ -32,7 +32,7 @@ namespace Transponder
                 return;
             }
 
-            _locatorController.Initialize();
+            _locatorController.Initialize(_window.PlaneContainer);
             _panelController.Initialize(_window.PanelView);
         }
     }

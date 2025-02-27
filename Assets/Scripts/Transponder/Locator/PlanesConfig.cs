@@ -7,6 +7,8 @@ namespace Transponder.Locator
     public class PlanesConfig : ScriptableObject
     {
         [SerializeField] private List<PlaneConfigData> _planes;
+
+        [field: SerializeField] public Vector3 HintOffset { get; private set; }
         
         public List<PlaneConfigData> Planes => _planes;
     }

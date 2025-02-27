@@ -26,6 +26,8 @@ namespace DefaultNamespace.Services
             builder.Register<IPanelButtonsFactory, PanelButtonsFactory>(Lifetime.Singleton);
             builder.Register<IPanelConfigProvider, PanelConfigProvider>(Lifetime.Singleton);
             builder.Register<IWindowFactory, WindowFactory>(Lifetime.Singleton);
+            builder.Register<IPlanesFactory, PlanesFactory>(Lifetime.Singleton);
+            builder.Register<IPlanesConfigProvider, PlanesConfigProvider>(Lifetime.Singleton);
         }
     }
 }

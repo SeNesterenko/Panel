@@ -9,9 +9,12 @@ namespace Transponder.Locator
     {
         private const string PLANES_CONFIG_PATH = "Configs/PlanesConfig";
         
-        public IReadOnlyList<PlaneConfigData> PlanesConfig { get; }
+        private readonly PlanesConfig _planesConfig;
+        
+        public IReadOnlyList<PlaneConfigData> PlanesConfig => _planesConfig.Planes;
+        public Vector3 HintOffset => _planesConfig.HintOffset;
 
         public PlanesConfigProvider() => 
-            PlanesConfig = Resources.Load<PlanesConfig>(PLANES_CONFIG_PATH).Planes;
+            _planesConfig = Resources.Load<PlanesConfig>(PLANES_CONFIG_PATH);
     }
 }

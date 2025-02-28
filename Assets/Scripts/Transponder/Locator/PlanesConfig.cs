@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 using Utils;
 
 namespace Transponder.Locator
@@ -14,10 +15,9 @@ namespace Transponder.Locator
         [Header("Cheats")]
         [SerializeField] private int _indexToUpdate;
         [SerializeField] private GameObject _transponderWindow;
-        
+
         public List<PlaneConfigData> Planes => _planes;
 
-        [ContextMenu("Update Path from Prefab")]
         public void UpdatePathFromPrefab()
         {
             if (_transponderWindow == null)
@@ -28,20 +28,20 @@ namespace Transponder.Locator
 
             if (_indexToUpdate < 0 || _indexToUpdate >= _planes.Count)
             {
-                Debug.LogError($"Incorrect index {_indexToUpdate}! Have to from 0 to {_planes.Count - 1}");
+                Debug.LogError($"Incorrect index {_indexToUpdate}! Must be from 0 to {_planes.Count - 1}");
                 return;
             }
-            
+
             var tempInstance = Instantiate(_transponderWindow);
             var tester = tempInstance.GetComponentInChildren<PlanePathTester>();
-            
+
             if (tester == null)
             {
-                Debug.LogError("PlanePathTester cant be found in the TransponderWindow!");
+                Debug.LogError("PlanePathTester can't be found in the TransponderWindow!");
                 DestroyImmediate(tempInstance);
                 return;
             }
-            
+
             _planes[_indexToUpdate].PathPoints.Clear();
 
             foreach (var point in tester.PathPoints) 
@@ -49,7 +49,25 @@ namespace Transponder.Locator
 
             DestroyImmediate(tempInstance.gameObject);
 
-            Debug.Log("Path successful updated!");
+            Debug.Log("Path successfully updated!");
         }
     }
+
+#if UNITY_EDITOR
+    [CustomEditor(typeof(PlanesConfig))]
+    public class PlanesConfigEditor : Editor
+    {
+        public override void OnInspectorGUI()
+        {
+            base.OnInspectorGUI();
+
+            PlanesConfig config = (PlanesConfig)target;
+
+            if (GUILayout.Button("Update Path from Prefab"))
+            {
+                config.UpdatePathFromPrefab();
+            }
+        }
+    }
+#endif
 }

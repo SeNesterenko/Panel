@@ -29,20 +29,20 @@ MonoBehaviour:
     <PathMode>k__BackingField: 2
     <Ease>k__BackingField: 1
   - PathPoints:
-    - {x: -322, y: -7, z: 0}
-    - {x: -295, y: 191, z: 0}
-    - {x: -564, y: 262, z: 0}
-    - {x: -763, y: 290, z: 0}
-    - {x: -191, y: 308, z: 0}
-    - {x: -539, y: 401, z: 0}
-    - {x: -332, y: -10, z: 0}
-    - {x: -1061, y: -14, z: 0}
-    - {x: -561, y: -74, z: 0}
+    - {x: 638, y: 633, z: 0}
+    - {x: 665, y: 831, z: 0}
+    - {x: 396, y: 902, z: 0}
+    - {x: 197, y: 930, z: 0}
+    - {x: 769, y: 948, z: 0}
+    - {x: 421, y: 1041, z: 0}
+    - {x: 628, y: 630, z: 0}
+    - {x: -101, y: 626, z: 0}
+    - {x: 399, y: 566, z: 0}
     <IsLooping>k__BackingField: 0
     <Duration>k__BackingField: 15
     <PathType>k__BackingField: 2
     <PathMode>k__BackingField: 2
     <Ease>k__BackingField: 1
   <HintOffset>k__BackingField: {x: 2, y: 2, z: 0}
-  _indexToUpdate: 0
+  _indexToUpdate: 1
   _transponderWindow: {fileID: 303404876468104961, guid: 72614fc164cf42544b5d62ba8c1df7f8, type: 3}

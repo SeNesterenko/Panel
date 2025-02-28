@@ -27,8 +27,7 @@ namespace Transponder.Locator
                 var planeView = Object.Instantiate(GetPlanePrefab(), root);
                 var planeHint = Object.Instantiate(GetPlaneHintPrefab(), root);
 
-                var planePresenter = new PlanePresenter(planeView, planeHint, data.IsLooping,
-                    _configProvider.HintOffset, data.PathPoints);
+                var planePresenter = new PlanePresenter(planeView, planeHint, _configProvider.HintOffset, data);
                 result.Add(planePresenter);
             }
 

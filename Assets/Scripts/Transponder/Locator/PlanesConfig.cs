@@ -18,7 +18,7 @@ namespace Transponder.Locator
 
         public List<PlaneConfigData> Planes => _planes;
 
-        public void UpdatePathFromPrefab()
+        private void UpdatePathFromPrefab()
         {
             if (_transponderWindow == null)
             {
@@ -51,8 +51,7 @@ namespace Transponder.Locator
 
             Debug.Log("Path successfully updated!");
         }
-    }
-
+        
 #if UNITY_EDITOR
     [CustomEditor(typeof(PlanesConfig))]
     public class PlanesConfigEditor : Editor
@@ -70,4 +69,5 @@ namespace Transponder.Locator
         }
     }
 #endif
+    }
 }

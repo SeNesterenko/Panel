@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
 
@@ -28,27 +29,28 @@ namespace Transponder.Locator
             _pathPoints = configData.PathPoints;
         }
 
-        public void StartMove()
-        {
-            _planeView.transform.position = _pathPoints[0];
-            _planeHint.transform.position = _pathPoints[0] + _hintOffset;
-            
+        public void StartMove() => 
             Move();
-        }
-        
+
         private void Move()
         {
-            _planeView.transform
+            _planeView.transform.position = _pathPoints[0];
+
+            var tween =_planeView.transform
                 .DOPath(_pathPoints.ToArray(), _configData.Duration, _configData.PathType, _configData.PathMode)
                 .SetLookAt(0.01f)
-                .SetEase(_configData.Ease);
+                .SetEase(_configData.Ease)
+                .SetRelative(false)
+                .OnComplete(Move);
+            
+            tween.Restart();
         }
 
 
         public void Dispose()
         {
-            Object.Destroy(_planeView.gameObject);
-            Object.Destroy(_planeHint.gameObject);
+            //Object.Destroy(_planeView.gameObject);
+            //Object.Destroy(_planeHint.gameObject);
         }
     }
 }

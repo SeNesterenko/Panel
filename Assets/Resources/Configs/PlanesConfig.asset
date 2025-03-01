@@ -24,6 +24,8 @@ MonoBehaviour:
     <PathType>k__BackingField: 0
     <PathMode>k__BackingField: 2
     <Ease>k__BackingField: 1
+    <DispatcherCode>k__BackingField: C
+    <DefaultResponderCode>k__BackingField: 2614
   - PathPoints:
     - {x: 1110.4, y: 460.7, z: 0}
     - {x: 1100.4, y: 440.9, z: 0}
@@ -36,6 +38,8 @@ MonoBehaviour:
     <PathType>k__BackingField: 0
     <PathMode>k__BackingField: 2
     <Ease>k__BackingField: 1
-  <HintOffset>k__BackingField: {x: 2, y: 2, z: 0}
+    <DispatcherCode>k__BackingField: K
+    <DefaultResponderCode>k__BackingField: 2615
+  <HintOffset>k__BackingField: {x: 100, y: 100, z: 0}
   _indexToUpdate: 1
   _transponderWindow: {fileID: 303404876468104961, guid: 72614fc164cf42544b5d62ba8c1df7f8, type: 3}

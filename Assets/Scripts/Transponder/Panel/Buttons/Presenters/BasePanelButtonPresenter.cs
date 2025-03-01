@@ -1,3 +1,6 @@
+using SimpleEventBus;
+using Transponder.Events;
+
 namespace Transponder.Panel.Buttons.Presenters
 {
     public class BasePanelButtonPresenter : PanelActionButton.IEventReceiver
@@ -21,8 +24,11 @@ namespace Transponder.Panel.Buttons.Presenters
         
         public ActionButtonType Type { get; }
 
-        public void OnButtonPressed() => 
+        public void OnButtonPressed()
+        {
+            EventStreams.Game.Publish(new OnButtonClickedEvent(Type));
             HandleActionButton();
+        }
 
         public void SetInteractable(bool isInteractable) => 
             _buttonView.SetInteractable(isInteractable);

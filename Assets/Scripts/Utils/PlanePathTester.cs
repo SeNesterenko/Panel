@@ -13,6 +13,9 @@ namespace Utils
 
         private void OnDrawGizmos()
         {
+            if (Application.isPlaying)
+                return;
+            
             if (!IsSelectedSelfOrChildren())
                 return;
 

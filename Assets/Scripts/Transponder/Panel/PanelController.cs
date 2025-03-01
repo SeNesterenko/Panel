@@ -55,6 +55,9 @@ namespace Transponder.Panel
 
         public void UpdateCurrentState(PanelState state)
         {
+            if (_currentState == state && state is PanelState.Default)
+                return;
+            
             if (_currentState == state)
             {
                 Debug.LogError($"{state} has already been selected!!!");

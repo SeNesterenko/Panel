@@ -60,12 +60,10 @@ namespace Transponder.Locator
         {
             base.OnInspectorGUI();
 
-            PlanesConfig config = (PlanesConfig)target;
+            var config = (PlanesConfig)target;
 
-            if (GUILayout.Button("Update Path from Prefab"))
-            {
+            if (GUILayout.Button("Update Path from Prefab")) 
                 config.UpdatePathFromPrefab();
-            }
         }
     }
 #endif

@@ -14,33 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _planes:
   - PathPoints:
-    - {x: 638, y: 633, z: 0}
-    - {x: 665, y: 831, z: 0}
-    - {x: 396, y: 902, z: 0}
-    - {x: 197, y: 930, z: 0}
-    - {x: 769, y: 948, z: 0}
-    - {x: 421, y: 1041, z: 0}
-    - {x: 628, y: 630, z: 0}
-    - {x: -101, y: 626, z: 0}
-    - {x: 399, y: 566, z: 0}
+    - {x: 982, y: 560, z: 0}
+    - {x: 715.4, y: 1067.3, z: 0}
+    - {x: 447.2, y: 690.9, z: 0}
+    - {x: 490.8, y: 428.9, z: 0}
+    - {x: 982, y: 560, z: 0}
     <IsLooping>k__BackingField: 1
     <Duration>k__BackingField: 10
-    <PathType>k__BackingField: 2
+    <PathType>k__BackingField: 0
     <PathMode>k__BackingField: 2
     <Ease>k__BackingField: 1
   - PathPoints:
-    - {x: 638, y: 633, z: 0}
-    - {x: 665, y: 831, z: 0}
-    - {x: 396, y: 902, z: 0}
-    - {x: 197, y: 930, z: 0}
-    - {x: 769, y: 948, z: 0}
-    - {x: 421, y: 1041, z: 0}
-    - {x: 628, y: 630, z: 0}
-    - {x: -101, y: 626, z: 0}
-    - {x: 399, y: 566, z: 0}
+    - {x: 1110.4, y: 460.7, z: 0}
+    - {x: 1100.4, y: 440.9, z: 0}
+    - {x: 1040.1, y: 464.2, z: 0}
+    - {x: 1127.3, y: 629.5, z: 0}
+    - {x: 1190.9, y: 607, z: 0}
+    - {x: 1144.9, y: 518, z: 0}
     <IsLooping>k__BackingField: 0
     <Duration>k__BackingField: 15
-    <PathType>k__BackingField: 2
+    <PathType>k__BackingField: 0
     <PathMode>k__BackingField: 2
     <Ease>k__BackingField: 1
   <HintOffset>k__BackingField: {x: 2, y: 2, z: 0}

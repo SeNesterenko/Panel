@@ -77,30 +77,19 @@ namespace Transponder.Panel
 
         public void ResetInformationSettings()
         {
-            _panelView.InputBackground.gameObject.SetActive(false);
-            _panelView.CodeTitle.gameObject.SetActive(true);
+            _panelView.ResetInformationSettings(_currentMode is TransmissionMode.STBY);
             SetPreviousCodeTitle();
-            
+
             if (_currentMode is TransmissionMode.STBY)
-            {
-                _panelView.CodeTitle.color = _panelView.STBYColor;
-                _panelView.ModeTitle.color = _panelView.STBYColor;
-                _panelView.InputBackground.color = _panelView.STBYColor;
-                
                 StopRIndication();
-            }
             else
             {
-                if (!_isRIndicationActive)
-                {
-                    ResetCancellationToken();
-                    _cts = new CancellationTokenSource();
-                    StartRIndication(_cts.Token).Forget();
-                }
-            
-                _panelView.CodeTitle.color = _panelView.DefaultColor;
-                _panelView.ModeTitle.color = _panelView.DefaultColor;
-                _panelView.InputBackground.color = _panelView.DefaultColor;
+                if (_isRIndicationActive) 
+                    return;
+                
+                ResetCancellationToken();
+                _cts = new CancellationTokenSource();
+                StartRIndication(_cts.Token).Forget();
             }
         }
 

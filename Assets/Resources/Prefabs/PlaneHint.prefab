@@ -1118,6 +1118,7 @@ MonoBehaviour:
   _identResponderColor: {r: 1, g: 1, b: 1, a: 1}
   _identColor: {r: 0, g: 0, b: 0, a: 1}
   _defaultColor: {r: 0.4666667, g: 0.4666667, b: 0.4666667, a: 1}
+  _selectedColor: {r: 0.058823533, g: 0.96470594, b: 0, a: 1}
 --- !u!114 &8607402431873240594
 MonoBehaviour:
   m_ObjectHideFlags: 0

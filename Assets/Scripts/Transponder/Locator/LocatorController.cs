@@ -37,16 +37,21 @@ namespace Transponder.Locator
             }
             
             _currentPresenter = _presenters.First();
+            _currentPresenter.SetSelected(true);
             EventStreams.Game.Publish(new OnHintClickedEvent(_currentPresenter.GetResponderCode()));
         }
 
-        public void OnHintClicked(PlanePresenter presenter) => 
+        public void OnHintClicked(PlanePresenter presenter)
+        {
             _currentPresenter = presenter;
+            _presenters.ForEach(p => p.SetSelected(false));
+            _currentPresenter.SetSelected(true);
+        }
 
         private void OnNewResponderCodeEntered(OnNewResponderCodeEnteredEvent eventData) => 
             _currentPresenter.SetResponderCode(eventData.ResponderCode);
 
-        private void OnButtonClicked(OnButtonClickedEvent eventData)
+        private async void OnButtonClicked(OnButtonClickedEvent eventData)
         {
             if (_currentPresenter is null)
             {
@@ -57,7 +62,9 @@ namespace Transponder.Locator
             switch (eventData.ButtonType)
             {
                 case ActionButtonType.IDENT:
-                    _currentPresenter.ActivateIDENT();
+                    _presenters.ForEach(p => p.SetInteractable(false));
+                    await _currentPresenter.ActivateIDENT();
+                    _presenters.ForEach(p => p.SetInteractable(true));
                     break;
                 case ActionButtonType.GND:
                 case ActionButtonType.STBY:

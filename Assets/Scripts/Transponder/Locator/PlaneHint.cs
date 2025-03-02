@@ -29,6 +29,7 @@ namespace Transponder.Locator
 
         [SerializeField] private Color _identColor;
         [SerializeField] private Color _defaultColor;
+        [SerializeField] private Color _selectedColor;
 
         public void Initialize(string responderCode, string dispatcherCode, string dispatcherComment, IEventReceiver eventReceiver)
         {
@@ -50,9 +51,9 @@ namespace Transponder.Locator
         public void SetHeightTitle(string heightText) => 
             _heightTitle.text = heightText;
 
-        public void SetIDENTState(bool isActive)
+        public void SetState(bool isActive, bool isSelected)
         {
-            _responderCodeTitle.color = isActive ? _identResponderColor : _defaultColor;
+            _responderCodeTitle.color = isActive ? _identResponderColor : isSelected ? _selectedColor : _defaultColor;
             _dispatcherCodeTitle.color = isActive ? _identColor : _defaultColor;
             _heightTitle.color = isActive ? _identColor : _defaultColor;
             _unknownTitle.color = isActive ? _identColor : _defaultColor;
@@ -63,5 +64,8 @@ namespace Transponder.Locator
 
         public void SetResponderCode(string responderCode) => 
             _responderCodeTitle.text = responderCode;
+
+        public void SetInteractable(bool isInteractable) => 
+            _button.interactable = isInteractable;
     }
 }

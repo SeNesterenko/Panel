@@ -126,8 +126,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _planeImage: {fileID: 851269940997780203}
   _arrowImage: {fileID: 8951315053731831404}
+  _joiningLineImage: {fileID: 5153296479760859371}
   _identColor: {r: 1, g: 1, b: 1, a: 1}
   _defaultColor: {r: 1, g: 0.9176471, b: 0.75294125, a: 1}
+  _selectColor: {r: 0.043137256, g: 0.9686275, b: 0, a: 1}
   _pathPointAppearTime: 1
   <PlaneContainer>k__BackingField: {fileID: 4916180921235696071}
 --- !u!1 &2859654336970154849

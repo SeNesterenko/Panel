@@ -32,6 +32,7 @@ namespace Transponder.Locator
         
         private IEventReceiver _eventReceiver;
         private string _currentResponderCode;
+        private bool _isSelected;
 
         public PlanePresenter(
             PlaneView planeView,
@@ -52,6 +53,16 @@ namespace Transponder.Locator
         public void Initialize(IEventReceiver eventReceiver) => 
             _eventReceiver = eventReceiver;
         
+        public void SetSelected(bool isSelected)
+        {
+            _isSelected = isSelected;
+            _planeHint.SetState(false, isSelected);
+            _planeView.SetState(false, isSelected);
+        }
+        
+        public void SetInteractable(bool isInteractable) => 
+            _planeHint.SetInteractable(isInteractable);
+
         public string GetResponderCode() => 
             _currentResponderCode;
         
@@ -95,15 +106,15 @@ namespace Transponder.Locator
             _planeHint.SetStateHint(isActive);
         }
 
-        public async void ActivateIDENT()
+        public async UniTask ActivateIDENT()
         {
-            _planeView.SetIDENTState(true);
-            _planeHint.SetIDENTState(true);
+            _planeView.SetState(true, _isSelected);
+            _planeHint.SetState(true, _isSelected);
             
             await UniTask.Delay(IDENT_TIME * 1000);
             
-            _planeView.SetIDENTState(false);
-            _planeHint.SetIDENTState(false);
+            _planeView.SetState(false, _isSelected);
+            _planeHint.SetState(false, _isSelected);
         }
 
         public void ChangeHeight(bool isShow) => 

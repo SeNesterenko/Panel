@@ -43,7 +43,7 @@ namespace Transponder.Locator
             _configData = configData;
             
             _pathPoints = configData.PathPoints;
-            _planeHint.Initialize(configData.DefaultResponderCode, configData.DispatcherCode, this);
+            _planeHint.Initialize(configData.DefaultResponderCode, configData.DispatcherCode, _configData.DispatcherComment, this);
         }
         
         public void Initialize(IEventReceiver eventReceiver) => 

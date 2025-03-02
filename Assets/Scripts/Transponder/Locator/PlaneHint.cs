@@ -18,6 +18,7 @@ namespace Transponder.Locator
         [SerializeField] private TextMeshProUGUI _speedTitle;
         [SerializeField] private TextMeshProUGUI _azimuthTitle;
         [SerializeField] private TextMeshProUGUI _rangeTitle;
+        [SerializeField] private TextMeshProUGUI _dispatcherCommentTitle;
 
         [SerializeField] private Button _button;
 
@@ -29,11 +30,14 @@ namespace Transponder.Locator
         [SerializeField] private Color _identColor;
         [SerializeField] private Color _defaultColor;
 
-        public void Initialize(string responderCode, string dispatcherCode, IEventReceiver eventReceiver)
+        public void Initialize(string responderCode, string dispatcherCode, string dispatcherComment, IEventReceiver eventReceiver)
         {
             _responderCodeTitle.text = responderCode;
             _dispatcherCodeTitle.text = dispatcherCode;
             
+            _dispatcherCommentTitle.transform.parent.gameObject.SetActive(!string.IsNullOrEmpty(dispatcherComment));
+            _dispatcherCommentTitle.text = dispatcherComment;
+
             _button.onClick.AddListener(eventReceiver.OnHintClicked);
         }
 

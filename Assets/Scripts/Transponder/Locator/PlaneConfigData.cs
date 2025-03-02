@@ -17,5 +17,6 @@ namespace Transponder.Locator
         [field: SerializeField] public Ease Ease { get; private set; }
         [field: SerializeField] public string DispatcherCode { get; private set; }
         [field: SerializeField] public string DefaultResponderCode { get; private set; }
+        [field: SerializeField] public string DispatcherComment { get; private set; }
     }
 }

@@ -27,6 +27,9 @@ namespace Transponder.Panel
             ModeTitle.color = isSTBY ? STBYColor : DefaultColor;
             InputBackground.color = isSTBY ? STBYColor : DefaultColor;
         }
+        
+        public void SetCodeTitle(string code) => 
+            CodeTitle.text = code;
 
         private void Update() => 
             _timer.text = DateTime.Now.ToString("HH:mm:ss");

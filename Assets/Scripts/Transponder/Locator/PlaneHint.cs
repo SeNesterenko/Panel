@@ -60,5 +60,8 @@ namespace Transponder.Locator
             _azimuthTitle.color = isActive ? _identColor : _defaultColor;
             _rangeTitle.color = isActive ? _identColor : _defaultColor;
         }
+
+        public void SetResponderCode(string responderCode) => 
+            _responderCodeTitle.text = responderCode;
     }
 }

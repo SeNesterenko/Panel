@@ -1,3 +1,6 @@
+using SimpleEventBus;
+using Transponder.Events;
+
 namespace Transponder.Panel.Buttons.Presenters
 {
     public class PressButtonPresenter : BasePanelButtonPresenter
@@ -21,6 +24,7 @@ namespace Transponder.Panel.Buttons.Presenters
             _eventReceiver.UpdateCurrentState(PanelState.Default);
             _eventReceiver.ResetInformationSettings();
             _panelView.CodeTitle.text = _panelView.CodeInputTitle.text;
+            EventStreams.Game.Publish(new OnNewResponderCodeEnteredEvent(_panelView.CodeInputTitle.text));
         }
 
         public override void UpdateData(ActionButtonData data, PanelActionButton buttonView)

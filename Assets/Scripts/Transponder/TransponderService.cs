@@ -32,8 +32,8 @@ namespace Transponder
                 return;
             }
 
-            _locatorController.Initialize(_window.PlaneContainer);
             _panelController.Initialize(_window.PanelView);
+            _locatorController.Initialize(_window.PlaneContainer);
         }
     }
 }

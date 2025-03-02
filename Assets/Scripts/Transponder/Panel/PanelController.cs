@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using JetBrains.Annotations;
+using SimpleEventBus;
+using SimpleEventBus.Disposables;
+using Transponder.Events;
 using Transponder.Panel.Buttons;
 using Transponder.Panel.Buttons.Presenters;
 using UnityEngine;
@@ -26,6 +29,7 @@ namespace Transponder.Panel
         private readonly IPanelButtonsFactory _factory;
         private readonly ButtonsPreset _buttonsPreset;
         private readonly ButtonsSetup _buttonsSetup;
+        private readonly CompositeDisposable _subscriptions;
         
         private List<BasePanelButtonPresenter> _buttons;
         private PanelState _currentState;
@@ -37,8 +41,12 @@ namespace Transponder.Panel
         
         private string _previousCode;
 
-        public PanelController(IPanelButtonsFactory factory, IPanelConfigProvider configProvider) => 
+        public PanelController(IPanelButtonsFactory factory, IPanelConfigProvider configProvider)
+        {
             _factory = factory;
+            
+            _subscriptions = new CompositeDisposable(EventStreams.Game.Subscribe<OnHintClickedEvent>(OnHintClicked));
+        }
 
         public void Initialize(PanelView container)
         {
@@ -108,8 +116,11 @@ namespace Transponder.Panel
         public void SetPreviousCodeTitle()
         {
             if (_currentState is PanelState.CODE)
-                _panelView.CodeTitle.text = _previousCode;
+                _panelView.SetCodeTitle(_previousCode);
         }
+
+        private void OnHintClicked(OnHintClickedEvent eventData) => 
+            _panelView.SetCodeTitle(eventData.ResponderCode);
 
         private async UniTask StartRIndication(CancellationToken ct)
         {
@@ -152,6 +163,7 @@ namespace Transponder.Panel
             
             _factory.Dispose();
             _buttons.Clear();
+            _subscriptions?.Dispose();
         }
     }
 }

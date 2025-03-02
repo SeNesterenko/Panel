@@ -130,7 +130,7 @@ namespace Transponder.Panel.Buttons
                     result = new VFRButtonPresenter(view, panelView, type, receiver);
                     break;
                 case ActionButtonType.CODE:
-                    result = new CODEButtonPresenter(data, view, panelView, type, receiver);
+                    result = new CODEButtonPresenter(view, panelView, type, receiver);
                     break;
                 case ActionButtonType.BACK:
                     result = new BACKButtonPresenter(view, panelView, type, receiver);

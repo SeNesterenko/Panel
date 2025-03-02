@@ -5,6 +5,8 @@ using DG.Tweening;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Core.PathCore;
 using DG.Tweening.Plugins.Options;
+using SimpleEventBus;
+using Transponder.Events;
 using UnityEngine;
 
 namespace Transponder.Locator
@@ -29,6 +31,7 @@ namespace Transponder.Locator
         private TweenerCore<Vector3, Path, PathOptions> _hintTween;
         
         private IEventReceiver _eventReceiver;
+        private string _currentResponderCode;
 
         public PlanePresenter(
             PlaneView planeView,
@@ -42,14 +45,27 @@ namespace Transponder.Locator
             _configData = configData;
             
             _pathPoints = configData.PathPoints;
+            _currentResponderCode = configData.DefaultResponderCode;
             _planeHint.Initialize(configData.DefaultResponderCode, configData.DispatcherCode, _configData.DispatcherComment, this);
         }
         
         public void Initialize(IEventReceiver eventReceiver) => 
             _eventReceiver = eventReceiver;
+        
+        public string GetResponderCode() => 
+            _currentResponderCode;
+        
+        public void SetResponderCode(string responderCode)
+        {
+            _planeHint.SetResponderCode(responderCode);
+            _currentResponderCode = responderCode;
+        }
 
-        public void OnHintClicked() => 
+        public void OnHintClicked()
+        {
+            EventStreams.Game.Publish(new OnHintClickedEvent(_currentResponderCode));
             _eventReceiver?.OnHintClicked(this);
+        }
 
         public void StartMove()
         {

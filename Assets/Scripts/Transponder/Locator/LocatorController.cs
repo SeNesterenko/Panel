@@ -21,7 +21,9 @@ namespace Transponder.Locator
         public LocatorController(IPlanesFactory planesFactory)
         {
             _planesFactory = planesFactory;
-            _subscriptions = new CompositeDisposable(EventStreams.Game.Subscribe<OnButtonClickedEvent>(OnButtonClicked));
+            _subscriptions = new CompositeDisposable(
+                EventStreams.Game.Subscribe<OnButtonClickedEvent>(OnButtonClicked),
+                EventStreams.Game.Subscribe<OnNewResponderCodeEnteredEvent>(OnNewResponderCodeEntered));
         }
 
         public void Initialize(Transform planeContainer)
@@ -35,10 +37,14 @@ namespace Transponder.Locator
             }
             
             _currentPresenter = _presenters.First();
+            EventStreams.Game.Publish(new OnHintClickedEvent(_currentPresenter.GetResponderCode()));
         }
 
         public void OnHintClicked(PlanePresenter presenter) => 
             _currentPresenter = presenter;
+
+        private void OnNewResponderCodeEntered(OnNewResponderCodeEnteredEvent eventData) => 
+            _currentPresenter.SetResponderCode(eventData.ResponderCode);
 
         private void OnButtonClicked(OnButtonClickedEvent eventData)
         {

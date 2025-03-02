@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,6 +7,8 @@ namespace Transponder.Panel
 {
     public class PanelView : MonoBehaviour
     {
+        [SerializeField] private TextMeshProUGUI _timer;
+        
         [field: SerializeField] public Transform Container { get; private set; }
         [field: SerializeField] public TextMeshProUGUI ModeTitle { get; private set; }
         [field: SerializeField] public TextMeshProUGUI CodeTitle { get; private set; }
@@ -24,5 +27,8 @@ namespace Transponder.Panel
             ModeTitle.color = isSTBY ? STBYColor : DefaultColor;
             InputBackground.color = isSTBY ? STBYColor : DefaultColor;
         }
+
+        private void Update() => 
+            _timer.text = DateTime.Now.ToString("HH:mm:ss");
     }
 }

@@ -9,11 +9,13 @@ namespace Transponder.Locator
     {
         private const string PLANE_VIEW_PREFAB_PATH = "Prefabs/Plane";
         private const string PLANE_HINT_PREFAB_PATH = "Prefabs/PlaneHint";
+        private const string PATH_POINT_PREFAB_PATH = "Prefabs/PathPoint";
         
         private readonly IPlanesConfigProvider _configProvider;
         
         private PlaneView _planeViewPrefab;
         private PlaneHint _planeHintPrefab;
+        private PathPointObject _pathPointObjectPrefab;
 
         public PlanesFactory(IPlanesConfigProvider configProvider) => 
             _configProvider = configProvider;
@@ -29,6 +31,16 @@ namespace Transponder.Locator
 
                 var planePresenter = new PlanePresenter(planeView, planeHint, _configProvider.HintOffset, data);
                 result.Add(planePresenter);
+
+                var pathPointsObjects = new List<PathPointObject>();
+                for (var i = 0; i < _configProvider.CountPathPointsObjects; i++)
+                {
+                    var pathPointObject = Object.Instantiate(GetPathPointPrefab(), root).GetComponent<PathPointObject>();
+                    pathPointObject.gameObject.SetActive(false);
+                    pathPointsObjects.Add(pathPointObject);
+                }
+                
+                planeView.Initialize(pathPointsObjects);
             }
 
             return result;
@@ -39,5 +51,8 @@ namespace Transponder.Locator
         
         private PlaneHint GetPlaneHintPrefab() =>
             _planeHintPrefab ? _planeHintPrefab : _planeHintPrefab = Resources.Load<PlaneHint>(PLANE_HINT_PREFAB_PATH);
+        
+        private PathPointObject GetPathPointPrefab() =>
+            _pathPointObjectPrefab ? _pathPointObjectPrefab : _pathPointObjectPrefab = Resources.Load<PathPointObject>(PATH_POINT_PREFAB_PATH);
     }
 }

@@ -7,5 +7,6 @@ namespace Transponder.Locator
     {
         public IReadOnlyList<PlaneConfigData> PlanesConfig { get; }
         public Vector3 HintOffset { get; }
+        public int CountPathPointsObjects { get; }
     }
 }

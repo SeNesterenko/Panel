@@ -29,7 +29,6 @@ namespace Transponder.Locator
         private TweenerCore<Vector3, Path, PathOptions> _hintTween;
         
         private IEventReceiver _eventReceiver;
-        private bool _isIDENTActive;
 
         public PlanePresenter(
             PlaneView planeView,
@@ -82,7 +81,6 @@ namespace Transponder.Locator
 
         public async void ActivateIDENT()
         {
-            _isIDENTActive = true;
             _planeView.SetIDENTState(true);
             _planeHint.SetIDENTState(true);
             

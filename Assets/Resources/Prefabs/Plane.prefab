@@ -128,6 +128,7 @@ MonoBehaviour:
   _arrowImage: {fileID: 8951315053731831404}
   _identColor: {r: 1, g: 1, b: 1, a: 1}
   _defaultColor: {r: 1, g: 0.9176471, b: 0.75294125, a: 1}
+  _pathPointAppearTime: 1
   <PlaneContainer>k__BackingField: {fileID: 4916180921235696071}
 --- !u!1 &4916180921235696071
 GameObject:

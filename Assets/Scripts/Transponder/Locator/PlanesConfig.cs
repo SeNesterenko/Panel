@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEditor;
 using Utils;
@@ -11,6 +12,7 @@ namespace Transponder.Locator
         [SerializeField] private List<PlaneConfigData> _planes;
 
         [field: SerializeField] public Vector3 HintOffset { get; private set; }
+        [field: SerializeField] public int CountPathPointsObjects { get; private set; }
 
         [Header("Cheats")]
         [SerializeField] private int _indexToUpdate;
@@ -18,6 +20,7 @@ namespace Transponder.Locator
 
         public List<PlaneConfigData> Planes => _planes;
 
+        [UsedImplicitly]
         private void UpdatePathFromPrefab()
         {
             if (_transponderWindow == null)

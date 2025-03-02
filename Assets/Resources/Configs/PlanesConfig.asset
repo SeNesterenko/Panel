@@ -20,7 +20,7 @@ MonoBehaviour:
     - {x: 490.8, y: 428.9, z: 0}
     - {x: 982, y: 560, z: 0}
     <IsLooping>k__BackingField: 1
-    <Duration>k__BackingField: 10
+    <Duration>k__BackingField: 30
     <PathType>k__BackingField: 0
     <PathMode>k__BackingField: 2
     <Ease>k__BackingField: 1
@@ -43,5 +43,6 @@ MonoBehaviour:
     <DefaultResponderCode>k__BackingField: 2615
     <DispatcherComment>k__BackingField: :A7
   <HintOffset>k__BackingField: {x: 100, y: 100, z: 0}
+  <CountPathPointsObjects>k__BackingField: 3
   _indexToUpdate: 1
   _transponderWindow: {fileID: 303404876468104961, guid: 72614fc164cf42544b5d62ba8c1df7f8, type: 3}

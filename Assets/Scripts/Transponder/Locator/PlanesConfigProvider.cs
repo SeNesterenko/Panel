@@ -13,6 +13,7 @@ namespace Transponder.Locator
         
         public IReadOnlyList<PlaneConfigData> PlanesConfig => _planesConfig.Planes;
         public Vector3 HintOffset => _planesConfig.HintOffset;
+        public int CountPathPointsObjects => _planesConfig.CountPathPointsObjects;
 
         public PlanesConfigProvider() => 
             _planesConfig = Resources.Load<PlanesConfig>(PLANES_CONFIG_PATH);

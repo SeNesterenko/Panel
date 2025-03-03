@@ -9,6 +9,7 @@ namespace Transponder.Locator
         [SerializeField] private Image _planeImage;
         [SerializeField] private Image _arrowImage;
         [SerializeField] private Image _joiningLineImage;
+        [SerializeField] private GameObject _selectedContour;
         
         [SerializeField] private Color _identColor;
         [SerializeField] private Color _defaultColor;
@@ -35,6 +36,7 @@ namespace Transponder.Locator
                 _arrowImage.color = _identColor;
                 _joiningLineImage.color = _identColor;
                 _pathPoints.ForEach(p => p.SetColor(_identColor));
+                _selectedContour.SetActive(false);
             }
             else if (isSelected)
             {
@@ -42,6 +44,7 @@ namespace Transponder.Locator
                 _arrowImage.color = _selectColor;
                 _joiningLineImage.color = _selectColor;
                 _pathPoints.ForEach(p => p.SetColor(_selectColor));
+                _selectedContour.SetActive(true);
             }
             else
             {
@@ -49,6 +52,7 @@ namespace Transponder.Locator
                 _arrowImage.color = _identColor;
                 _joiningLineImage.color = _identColor;
                 _pathPoints.ForEach(p => p.SetColor(_identColor));
+                _selectedContour.SetActive(false);
             }
         }
 

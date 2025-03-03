@@ -15,6 +15,8 @@ namespace Transponder.Locator
         [SerializeField] private Color _selectColor;
 
         [SerializeField] private float _pathPointAppearTime = 1;
+        
+        [field: SerializeField] public RectTransform LineRendererTarget { get; private set; }
 
         private List<PathPointObject> _pathPoints;
         private float _lastTime;

@@ -1,16 +1,19 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Transponder.Locator
 {
-    public class PlaneHint : MonoBehaviour
+    public class PlaneHint : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
     {
         public interface IEventReceiver
         {
             public void OnHintClicked();
+            public void OnHintReleased(Vector3 position);
+            public void OnHintStartDragging();
         }
-        
+
         [SerializeField] private TextMeshProUGUI _responderCodeTitle;
         [SerializeField] private TextMeshProUGUI _dispatcherCodeTitle;
         [SerializeField] private TextMeshProUGUI _heightTitle;
@@ -30,9 +33,14 @@ namespace Transponder.Locator
         [SerializeField] private Color _identColor;
         [SerializeField] private Color _defaultColor;
         [SerializeField] private Color _selectedColor;
+        
+        private IEventReceiver _eventReceiver;
+
+        [field: SerializeField] public RectTransform LineRendererTarget { get; private set; }
 
         public void Initialize(string responderCode, string dispatcherCode, string dispatcherComment, IEventReceiver eventReceiver)
         {
+            _eventReceiver = eventReceiver;
             _responderCodeTitle.text = responderCode;
             _dispatcherCodeTitle.text = dispatcherCode;
             
@@ -51,15 +59,15 @@ namespace Transponder.Locator
         public void SetHeightTitle(string heightText) => 
             _heightTitle.text = heightText;
 
-        public void SetState(bool isActive, bool isSelected)
+        public void SetState(bool isIDENT, bool isSelected)
         {
-            _responderCodeTitle.color = isActive ? _identResponderColor : isSelected ? _selectedColor : _defaultColor;
-            _dispatcherCodeTitle.color = isActive ? _identColor : _defaultColor;
-            _heightTitle.color = isActive ? _identColor : _defaultColor;
-            _unknownTitle.color = isActive ? _identColor : _defaultColor;
-            _speedTitle.color = isActive ? _identColor : _defaultColor;
-            _azimuthTitle.color = isActive ? _identColor : _defaultColor;
-            _rangeTitle.color = isActive ? _identColor : _defaultColor;
+            _responderCodeTitle.color = isIDENT ? _identResponderColor : isSelected ? _selectedColor : _defaultColor;
+            _dispatcherCodeTitle.color = isIDENT ? _identColor : _defaultColor;
+            _heightTitle.color = isIDENT ? _identColor : _defaultColor;
+            _unknownTitle.color = isIDENT ? _identColor : _defaultColor;
+            _speedTitle.color = isIDENT ? _identColor : _defaultColor;
+            _azimuthTitle.color = isIDENT ? _identColor : _defaultColor;
+            _rangeTitle.color = isIDENT ? _identColor : _defaultColor;
         }
 
         public void SetResponderCode(string responderCode) => 
@@ -67,5 +75,14 @@ namespace Transponder.Locator
 
         public void SetInteractable(bool isInteractable) => 
             _button.interactable = isInteractable;
+
+        public void OnPointerDown(PointerEventData eventData) => 
+            _eventReceiver.OnHintStartDragging();
+
+        public void OnDrag(PointerEventData eventData) => 
+            transform.position = new Vector3(eventData.position.x, eventData.position.y, 0);
+
+        public void OnPointerUp(PointerEventData eventData) => 
+            _eventReceiver.OnHintReleased(transform.position);
     }
 }

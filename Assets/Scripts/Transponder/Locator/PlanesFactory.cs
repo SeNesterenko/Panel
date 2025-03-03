@@ -10,12 +10,14 @@ namespace Transponder.Locator
         private const string PLANE_VIEW_PREFAB_PATH = "Prefabs/Plane";
         private const string PLANE_HINT_PREFAB_PATH = "Prefabs/PlaneHint";
         private const string PATH_POINT_PREFAB_PATH = "Prefabs/PathPoint";
+        private const string UI_LINE_PREFAB_PATH = "Prefabs/UiLineDrawer";
         
         private readonly IPlanesConfigProvider _configProvider;
-        
+
         private PlaneView _planeViewPrefab;
         private PlaneHint _planeHintPrefab;
         private PathPointObject _pathPointObjectPrefab;
+        private UILineDrawer _uiLinePrefab;
 
         public PlanesFactory(IPlanesConfigProvider configProvider) => 
             _configProvider = configProvider;
@@ -28,8 +30,9 @@ namespace Transponder.Locator
             {
                 var planeView = Object.Instantiate(GetPlanePrefab(), root);
                 var planeHint = Object.Instantiate(GetPlaneHintPrefab(), root);
+                var uiLine = Object.Instantiate(GetUILinePrefab(), root);
 
-                var planePresenter = new PlanePresenter(planeView, planeHint, _configProvider.HintOffset, data);
+                var planePresenter = new PlanePresenter(planeView, planeHint, uiLine, _configProvider.HintOffset, data);
                 result.Add(planePresenter);
 
                 var pathPointsObjects = new List<PathPointObject>();
@@ -41,6 +44,7 @@ namespace Transponder.Locator
                 }
                 
                 planeView.Initialize(pathPointsObjects);
+                uiLine.Initialize(planeHint.LineRendererTarget, planeView.LineRendererTarget);
             }
 
             return result;
@@ -54,5 +58,8 @@ namespace Transponder.Locator
         
         private PathPointObject GetPathPointPrefab() =>
             _pathPointObjectPrefab ? _pathPointObjectPrefab : _pathPointObjectPrefab = Resources.Load<PathPointObject>(PATH_POINT_PREFAB_PATH);
+        
+        private UILineDrawer GetUILinePrefab() =>
+            _uiLinePrefab ? _uiLinePrefab : _uiLinePrefab = Resources.Load<UILineDrawer>(UI_LINE_PREFAB_PATH);
     }
 }

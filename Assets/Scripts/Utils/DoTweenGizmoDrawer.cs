@@ -11,7 +11,7 @@ namespace Utils
         {
             var path = new Path(pathType, waypoints, gizmoSegmentsCount, gizmoColor);
 
-            MethodInfo finalizeMethod = typeof(Path).GetMethod("FinalizePath", BindingFlags.NonPublic | BindingFlags.Instance);
+            var finalizeMethod = typeof(Path).GetMethod("FinalizePath", BindingFlags.NonPublic | BindingFlags.Instance);
 
             if (finalizeMethod == null)
             {
@@ -19,7 +19,7 @@ namespace Utils
                 return;
             }
 
-            MethodInfo drawMethod = typeof(Path).GetMethod("Draw", BindingFlags.NonPublic | BindingFlags.Instance);
+            var drawMethod = typeof(Path).GetMethod("Draw", BindingFlags.NonPublic | BindingFlags.Instance);
             if (drawMethod == null)
             {
                 Debug.LogError("Method Draw not found");

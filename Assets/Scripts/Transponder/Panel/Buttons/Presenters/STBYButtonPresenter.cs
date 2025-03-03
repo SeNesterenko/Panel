@@ -16,8 +16,6 @@ namespace Transponder.Panel.Buttons.Presenters
             _eventReceiver.ResetInformationSettings();
             
             _panelView.ModeTitle.text = STBY_TEXT;
-            
-            //ToDo: Send Locator Event (Hide)
         }
     }
 }

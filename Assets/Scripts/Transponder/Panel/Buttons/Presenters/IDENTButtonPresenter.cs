@@ -26,9 +26,9 @@ namespace Transponder.Panel.Buttons.Presenters
         {
             _eventReceiver.UpdateCurrentState(PanelState.Default);
             _eventReceiver.SetButtonsLockState(false);
+            
             var previousTitle = _panelView.ModeTitle.text;
             _panelView.ModeTitle.text = IDENT_TEXT;
-            //ToDo: Send Locator Event (Highlight)
 
             await UniTask.Delay(IDENT_TIME * 1000);
 

@@ -15,8 +15,6 @@ namespace Transponder.Panel.Buttons.Presenters
             _eventReceiver.UpdateCurrentMode(TransmissionMode.ALT);
             _eventReceiver.ResetInformationSettings();
             _panelView.ModeTitle.text = ALT_TEXT;
-            
-            //ToDo: Send Locator Event (New SendData)
         }
     }
 }

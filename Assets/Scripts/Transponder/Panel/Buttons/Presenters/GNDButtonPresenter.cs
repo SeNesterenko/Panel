@@ -16,7 +16,6 @@ namespace Transponder.Panel.Buttons.Presenters
             _eventReceiver.ResetInformationSettings();
             
             _panelView.ModeTitle.text = GND_TEXT;
-            //ToDo: Send Locator Event (Hide)
         }
     }
 }

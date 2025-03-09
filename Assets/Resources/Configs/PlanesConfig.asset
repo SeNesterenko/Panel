@@ -39,7 +39,6 @@ MonoBehaviour:
         Value: 18
       - Key: 0.12
         Value: 19
-<<<<<<< HEAD
       - Key: 0.15
         Value: 20
       - Key: 0.81
@@ -52,9 +51,7 @@ MonoBehaviour:
         Value: 16
       - Key: 0.93
         Value: 15
-=======
     <RestartTime>k__BackingField: 0
->>>>>>> c3c0964d48972070573a2b6d73f748ec37fe6c1e
   - PathPoints:
     - {x: 1110.4, y: 460.7, z: 0}
     - {x: 1100.4, y: 440.9, z: 0}
@@ -83,7 +80,6 @@ MonoBehaviour:
       - Key: 0.08
         Value: 11
       - Key: 0.1
-<<<<<<< HEAD
         Value: 12
       - Key: 0.12
         Value: 13
@@ -107,10 +103,7 @@ MonoBehaviour:
         Value: 8
       - Key: 0.95
         Value: 7
-=======
-        Value: 24
-    <RestartTime>k__BackingField: 1
->>>>>>> c3c0964d48972070573a2b6d73f748ec37fe6c1e
+    <RestartTime>k__BackingField: 5
   <HintOffset>k__BackingField: {x: 100, y: 100, z: 0}
   <CountPathPointsObjects>k__BackingField: 3
   _indexToUpdate: 1

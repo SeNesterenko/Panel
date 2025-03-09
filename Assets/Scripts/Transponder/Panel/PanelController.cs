@@ -160,9 +160,11 @@ namespace Transponder.Panel
         public void Dispose()
         {
             ResetCancellationToken();
-            
+
+            if (_buttons is { Count: > 0 })
+                _buttons.Clear();
+
             _factory.Dispose();
-            _buttons.Clear();
             _subscriptions?.Dispose();
         }
     }

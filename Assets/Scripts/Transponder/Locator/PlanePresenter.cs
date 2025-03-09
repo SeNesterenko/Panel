@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using DG.Tweening.Core;
@@ -36,6 +37,8 @@ namespace Transponder.Locator
 
         private bool _isHintDragging;
         private bool _isShow;
+
+        private CancellationTokenSource _cts;
 
         public PlanePresenter(
             PlaneView planeView,
@@ -108,23 +111,9 @@ namespace Transponder.Locator
                 .SetEase(_configData.Ease)
                 .OnUpdate(OnDOTWeenUpdate)
                 .SetRelative(false)
-                .OnComplete(StartMove);
+                .OnComplete(RestartMove);
 
             _viewTween.Restart();
-        }
-
-        private void OnDOTWeenUpdate()
-        {
-            UpdateHintPosition();
-            SetHeightTitle();
-        }
-
-        private void UpdateHintPosition()
-        {
-            if (_isHintDragging)
-                return;
-
-            _planeHint.transform.position = _planeView.transform.position + _hintOffset;
         }
 
         public void SetPlaneAndHintState(bool isActive)
@@ -152,6 +141,38 @@ namespace Transponder.Locator
             SetHeightTitle();
         }
 
+        private async void RestartMove()
+        {
+            ResetToken();
+            _cts = new CancellationTokenSource();
+            
+            EnablePlaneObjects(false);
+            await UniTask.Delay(_configData.RestartTime * 1000, cancellationToken: _cts.Token);
+            EnablePlaneObjects(true);
+            
+            StartMove();
+        }
+
+        private void EnablePlaneObjects(bool isEnable)
+        {
+            _planeHint.gameObject.SetActive(isEnable);
+            _planeView.gameObject.SetActive(isEnable);
+        }
+
+        private void OnDOTWeenUpdate()
+        {
+            UpdateHintPosition();
+            SetHeightTitle();
+        }
+
+        private void UpdateHintPosition()
+        {
+            if (_isHintDragging)
+                return;
+
+            _planeHint.transform.position = _planeView.transform.position + _hintOffset;
+        }
+
         private void SetHeightTitle() => 
             _planeHint.SetHeightTitle(_isShow ? GetCurrentHeight() : "???");
 
@@ -166,8 +187,19 @@ namespace Transponder.Locator
             return $"AF00{result}";
         }
 
+        private void ResetToken()
+        {
+            if (_cts is null)
+                return;
+
+            _cts.Cancel();
+            _cts.Dispose();
+            _cts = null;
+        }
+
         public void Dispose()
         {
+            ResetToken();
             _viewTween.Kill();
 
             if (_planeView)

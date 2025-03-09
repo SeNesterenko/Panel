@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using AYellowpaper.SerializedCollections;
 using DG.Tweening;
 using UnityEngine;
 
@@ -18,5 +19,6 @@ namespace Transponder.Locator
         [field: SerializeField] public string DispatcherCode { get; private set; }
         [field: SerializeField] public string DefaultResponderCode { get; private set; }
         [field: SerializeField] public string DispatcherComment { get; private set; }
+        [field: SerializeField] public SerializedDictionary<float, int> PathHeight { get; private set; }
     }
 }

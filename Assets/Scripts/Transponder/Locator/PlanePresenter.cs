@@ -35,6 +35,7 @@ namespace Transponder.Locator
         private bool _isSelected;
 
         private bool _isHintDragging;
+        private bool _isShow;
 
         public PlanePresenter(
             PlaneView planeView,
@@ -48,6 +49,8 @@ namespace Transponder.Locator
             _uiLineDrawer = uiLineDrawer;
             _hintOffset = hintOffset;
             _configData = configData;
+            
+            _isShow = true;
             
             _pathPoints = configData.PathPoints;
             _currentResponderCode = configData.DefaultResponderCode;
@@ -103,18 +106,24 @@ namespace Transponder.Locator
                 .DOPath(_pathPoints.ToArray(), _configData.Duration, _configData.PathType, _configData.PathMode)
                 .SetLookAt(0.01f)
                 .SetEase(_configData.Ease)
-                .OnUpdate(UpdateHintPosition)
+                .OnUpdate(OnDOTWeenUpdate)
                 .SetRelative(false)
                 .OnComplete(StartMove);
 
             _viewTween.Restart();
         }
 
+        private void OnDOTWeenUpdate()
+        {
+            UpdateHintPosition();
+            SetHeightTitle();
+        }
+
         private void UpdateHintPosition()
         {
             if (_isHintDragging)
                 return;
-            
+
             _planeHint.transform.position = _planeView.transform.position + _hintOffset;
         }
 
@@ -137,11 +146,25 @@ namespace Transponder.Locator
             _uiLineDrawer.SetState(false, _isSelected);
         }
 
-        public void ChangeHeight(bool isShow) => 
-            _planeHint.SetHeightTitle(isShow ? GetCurrentHeight() : "???");
+        public void ChangeHeight(bool isShow)
+        {
+            _isShow = isShow;
+            SetHeightTitle();
+        }
 
-        private string GetCurrentHeight() => 
-            "AF0015";
+        private void SetHeightTitle() => 
+            _planeHint.SetHeightTitle(_isShow ? GetCurrentHeight() : "???");
+
+        private string GetCurrentHeight()
+        {
+            var progress = _viewTween.ElapsedPercentage();
+            var result = 0;
+
+            foreach (var height in _configData.PathHeight.Where(height => progress >= height.Key))
+                result = height.Value;
+            
+            return $"AF00{result}";
+        }
 
         public void Dispose()
         {

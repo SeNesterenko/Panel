@@ -69,5 +69,8 @@ namespace Transponder.Locator
             _pathPoints[_lastIndex].gameObject.SetActive(true);
             _lastIndex = (_lastIndex + 1) % _pathPoints.Count;
         }
+
+        public void Dispose() => 
+            _pathPoints?.ForEach(p => Destroy(p.gameObject));
     }
 }

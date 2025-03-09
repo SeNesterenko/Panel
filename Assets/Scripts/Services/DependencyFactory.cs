@@ -16,10 +16,11 @@ namespace DefaultNamespace.Services
         
         protected override void Configure(IContainerBuilder builder)
         {
-            builder.RegisterEntryPoint<MenuWindowService>();
+            builder.RegisterEntryPoint<EntryPoint>();
             
             builder.RegisterComponent(_mainCanvas);
-
+            
+            builder.Register<IMenuWindowService, MenuWindowService>(Lifetime.Singleton);
             builder.Register<ITransponderService, TransponderService>(Lifetime.Singleton);
             builder.Register<ILocatorController, LocatorController>(Lifetime.Singleton);
             builder.Register<IPanelController, PanelController>(Lifetime.Singleton);

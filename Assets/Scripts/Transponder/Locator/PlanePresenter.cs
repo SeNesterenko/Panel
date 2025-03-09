@@ -203,10 +203,16 @@ namespace Transponder.Locator
             _viewTween.Kill();
 
             if (_planeView)
+            {
+                _planeView.Dispose();
                 Object.Destroy(_planeView.gameObject);
+            }
             
             if (_planeHint)
                 Object.Destroy(_planeHint.gameObject);
+            
+            if (_uiLineDrawer)
+                Object.Destroy(_uiLineDrawer.gameObject);
         }
     }
 }

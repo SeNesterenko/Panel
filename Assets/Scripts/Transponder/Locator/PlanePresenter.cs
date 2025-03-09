@@ -39,6 +39,7 @@ namespace Transponder.Locator
         private bool _isShow;
 
         private CancellationTokenSource _cts;
+        private bool _isVFRActive;
 
         public PlanePresenter(
             PlaneView planeView,
@@ -83,12 +84,17 @@ namespace Transponder.Locator
             _currentResponderCode = responderCode;
         }
         
-        public void SetVFRState(bool isActive) =>
+        public void SetVFRState(bool isActive)
+        {
+            _isVFRActive = isActive;
             _planeHint.SetResponderCode(isActive ? "1200" : _currentResponderCode);
+        }
 
         public void OnHintClicked()
         {
-            EventStreams.Game.Publish(new OnHintClickedEvent(_currentResponderCode));
+            if (!_isVFRActive)
+                EventStreams.Game.Publish(new OnHintClickedEvent(_currentResponderCode));
+            
             _eventReceiver?.OnHintClicked(this);
         }
 

@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6daef996b10475887300531a77d5c13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _planeContainer: {fileID: 4916180921235696071}
   _planeImage: {fileID: 851269940997780203}
   _arrowImage: {fileID: 8951315053731831404}
   _joiningLineImage: {fileID: 5153296479760859371}
@@ -134,7 +135,6 @@ MonoBehaviour:
   _selectColor: {r: 0.043137256, g: 0.9686275, b: 0, a: 1}
   _pathPointAppearTime: 1
   <LineRendererTarget>k__BackingField: {fileID: 5055967207365834485}
-  <PlaneContainer>k__BackingField: {fileID: 4916180921235696071}
 --- !u!1 &2859654336970154849
 GameObject:
   m_ObjectHideFlags: 0

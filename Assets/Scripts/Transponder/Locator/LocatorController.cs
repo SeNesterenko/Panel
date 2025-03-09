@@ -68,13 +68,16 @@ namespace Transponder.Locator
                     break;
                 case ActionButtonType.GND:
                 case ActionButtonType.STBY:
+                    _presenters.ForEach(p => p.SetInteractable(false));
                     _currentPresenter.SetPlaneAndHintState(false);
                     break;
                 case ActionButtonType.ON:
+                    _presenters.ForEach(p => p.SetInteractable(true));
                     _currentPresenter.SetPlaneAndHintState(true);
                     _currentPresenter.ChangeHeight(false);
                     break;
                 case ActionButtonType.ALT:
+                    _presenters.ForEach(p => p.SetInteractable(true));
                     _currentPresenter.SetPlaneAndHintState(true);
                     _currentPresenter.ChangeHeight(true);
                     break;

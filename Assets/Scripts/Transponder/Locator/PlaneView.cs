@@ -6,24 +6,23 @@ namespace Transponder.Locator
 {
     public class PlaneView : MonoBehaviour
     {
+        [SerializeField] private GameObject _planeContainer;
         [SerializeField] private Image _planeImage;
         [SerializeField] private Image _arrowImage;
         [SerializeField] private Image _joiningLineImage;
         [SerializeField] private GameObject _selectedContour;
-        
+
         [SerializeField] private Color _identColor;
         [SerializeField] private Color _defaultColor;
         [SerializeField] private Color _selectColor;
 
         [SerializeField] private float _pathPointAppearTime = 1;
-        
+
         [field: SerializeField] public RectTransform LineRendererTarget { get; private set; }
 
         private List<PathPointObject> _pathPoints;
         private float _lastTime;
         private int _lastIndex;
-
-        [field: SerializeField] public GameObject PlaneContainer { get; private set; }
 
         public void Initialize(List<PathPointObject> pathPointsObjects) => 
             _pathPoints = pathPointsObjects;
@@ -55,10 +54,16 @@ namespace Transponder.Locator
                 _selectedContour.SetActive(false);
             }
         }
+        
+        public void SetActive(bool isActive)
+        {
+            _planeContainer.SetActive(isActive);
+            _pathPoints.ForEach(p => p.gameObject.SetActive(isActive));
+        }
 
         private void Update()
         {
-            if (_pathPoints == null || _pathPoints.Count == 0) 
+            if (_pathPoints == null || _pathPoints.Count == 0 || !_planeContainer.activeSelf) 
                 return;
             
             if (!(Time.time - _lastTime >= _pathPointAppearTime)) 

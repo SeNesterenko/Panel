@@ -118,8 +118,9 @@ namespace Transponder.Locator
 
         public void SetPlaneAndHintState(bool isActive)
         {
-            _planeView.PlaneContainer.SetActive(isActive);
+            _planeView.SetActive(isActive);
             _planeHint.SetStateHint(isActive);
+            _uiLineDrawer.gameObject.SetActive(isActive);
         }
 
         public async UniTask ActivateIDENT()

@@ -35,6 +35,7 @@ MonoBehaviour:
         Value: 18
       - Key: 0.2
         Value: 19
+    <RestartTime>k__BackingField: 0
   - PathPoints:
     - {x: 1110.4, y: 460.7, z: 0}
     - {x: 1100.4, y: 440.9, z: 0}
@@ -56,6 +57,7 @@ MonoBehaviour:
         Value: 23
       - Key: 0.1
         Value: 24
+    <RestartTime>k__BackingField: 1
   <HintOffset>k__BackingField: {x: 100, y: 100, z: 0}
   <CountPathPointsObjects>k__BackingField: 3
   _indexToUpdate: 1

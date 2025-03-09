@@ -18,6 +18,8 @@ namespace Transponder.Locator
         private List<PlanePresenter> _presenters;
         private PlanePresenter _currentPresenter;
 
+        private bool _isVFRActive;
+
         public LocatorController(IPlanesFactory planesFactory)
         {
             _planesFactory = planesFactory;
@@ -48,8 +50,11 @@ namespace Transponder.Locator
             _currentPresenter.SetSelected(true);
         }
 
-        private void OnNewResponderCodeEntered(OnNewResponderCodeEnteredEvent eventData) => 
+        private void OnNewResponderCodeEntered(OnNewResponderCodeEnteredEvent eventData)
+        {
+            _isVFRActive = false;
             _currentPresenter.SetResponderCode(eventData.ResponderCode);
+        }
 
         private async void OnButtonClicked(OnButtonClickedEvent eventData)
         {
@@ -61,6 +66,10 @@ namespace Transponder.Locator
             
             switch (eventData.ButtonType)
             {
+                case ActionButtonType.VFR:
+                    _isVFRActive = !_isVFRActive;
+                    _currentPresenter.SetVFRState(_isVFRActive);
+                    break;
                 case ActionButtonType.IDENT:
                     _presenters.ForEach(p => p.SetInteractable(false));
                     await _currentPresenter.ActivateIDENT();
@@ -68,15 +77,18 @@ namespace Transponder.Locator
                     break;
                 case ActionButtonType.GND:
                 case ActionButtonType.STBY:
+                    _currentPresenter.SetVFRState(false);
                     _presenters.ForEach(p => p.SetInteractable(false));
                     _currentPresenter.SetPlaneAndHintState(false);
                     break;
                 case ActionButtonType.ON:
+                    _currentPresenter.SetVFRState(false);
                     _presenters.ForEach(p => p.SetInteractable(true));
                     _currentPresenter.SetPlaneAndHintState(true);
                     _currentPresenter.ChangeHeight(false);
                     break;
                 case ActionButtonType.ALT:
+                    _currentPresenter.SetVFRState(false);
                     _presenters.ForEach(p => p.SetInteractable(true));
                     _currentPresenter.SetPlaneAndHintState(true);
                     _currentPresenter.ChangeHeight(true);

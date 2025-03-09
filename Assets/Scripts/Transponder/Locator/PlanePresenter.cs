@@ -82,6 +82,9 @@ namespace Transponder.Locator
             _planeHint.SetResponderCode(responderCode);
             _currentResponderCode = responderCode;
         }
+        
+        public void SetVFRState(bool isActive) =>
+            _planeHint.SetResponderCode(isActive ? "1200" : _currentResponderCode);
 
         public void OnHintClicked()
         {

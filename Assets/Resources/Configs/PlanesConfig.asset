@@ -30,14 +30,10 @@ MonoBehaviour:
     <PathHeight>k__BackingField:
       _serializedList:
       - Key: 0
-        Value: 15
-      - Key: 0.03
-        Value: 16
-      - Key: 0.06
         Value: 17
-      - Key: 0.09
+      - Key: 0.1
         Value: 18
-      - Key: 0.12
+      - Key: 0.2
         Value: 19
       - Key: 0.15
         Value: 20
@@ -70,15 +66,7 @@ MonoBehaviour:
     <PathHeight>k__BackingField:
       _serializedList:
       - Key: 0
-        Value: 7
-      - Key: 0.02
-        Value: 8
-      - Key: 0.04
-        Value: 9
-      - Key: 0.06
-        Value: 10
-      - Key: 0.08
-        Value: 11
+        Value: 23
       - Key: 0.1
         Value: 12
       - Key: 0.12

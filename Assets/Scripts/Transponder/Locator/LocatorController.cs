@@ -85,11 +85,14 @@ namespace Transponder.Locator
 
         public void Dispose()
         {
+            _subscriptions?.Dispose();
+            if (_presenters is null)
+                return;
+            
             foreach (var planePresenter in _presenters) 
                 planePresenter.Dispose();
             
             _presenters.Clear();
-            _subscriptions?.Dispose();
         }
     }
 }

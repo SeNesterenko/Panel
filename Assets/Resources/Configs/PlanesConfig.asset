@@ -20,7 +20,7 @@ MonoBehaviour:
     - {x: 490.8, y: 428.9, z: 0}
     - {x: 982, y: 560, z: 0}
     <IsLooping>k__BackingField: 1
-    <Duration>k__BackingField: 30
+    <Duration>k__BackingField: 200
     <PathType>k__BackingField: 0
     <PathMode>k__BackingField: 2
     <Ease>k__BackingField: 1
@@ -60,7 +60,7 @@ MonoBehaviour:
     - {x: 1190.9, y: 607, z: 0}
     - {x: 1144.9, y: 518, z: 0}
     <IsLooping>k__BackingField: 0
-    <Duration>k__BackingField: 15
+    <Duration>k__BackingField: 50
     <PathType>k__BackingField: 0
     <PathMode>k__BackingField: 2
     <Ease>k__BackingField: 1

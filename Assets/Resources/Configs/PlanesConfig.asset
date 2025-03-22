@@ -20,8 +20,8 @@ MonoBehaviour:
     - {x: 490.8, y: 428.9, z: 0}
     - {x: 982, y: 560, z: 0}
     <IsLooping>k__BackingField: 1
-    <Duration>k__BackingField: 30
-    <PathType>k__BackingField: 0
+    <Duration>k__BackingField: 200
+    <PathType>k__BackingField: 1
     <PathMode>k__BackingField: 2
     <Ease>k__BackingField: 1
     <DispatcherCode>k__BackingField: K
@@ -30,12 +30,16 @@ MonoBehaviour:
     <PathHeight>k__BackingField:
       _serializedList:
       - Key: 0
+        Value: 15
+      - Key: 0.09
+        Value: 16
+      - Key: 0.11
         Value: 17
-      - Key: 0.1
+      - Key: 0.13
         Value: 18
-      - Key: 0.2
-        Value: 19
       - Key: 0.15
+        Value: 19
+      - Key: 0.17
         Value: 20
       - Key: 0.81
         Value: 19
@@ -50,14 +54,19 @@ MonoBehaviour:
     <RestartTime>k__BackingField: 0
   - PathPoints:
     - {x: 1110.4, y: 460.7, z: 0}
-    - {x: 1100.4, y: 440.9, z: 0}
-    - {x: 1040.1, y: 464.2, z: 0}
-    - {x: 1127.3, y: 629.5, z: 0}
-    - {x: 1190.9, y: 607, z: 0}
+    - {x: 1093.8, y: 439, z: 0}
+    - {x: 1069.5, y: 435.8, z: 0}
+    - {x: 1025.4, y: 458, z: 0}
+    - {x: 1015.4, y: 474.4, z: 0}
+    - {x: 1027, y: 499, z: 0}
+    - {x: 1076.8, y: 595.7, z: 0}
+    - {x: 1093.8, y: 623.2, z: 0}
+    - {x: 1124, y: 616, z: 0}
+    - {x: 1174.2, y: 589.9, z: 0}
     - {x: 1144.9, y: 518, z: 0}
     <IsLooping>k__BackingField: 0
-    <Duration>k__BackingField: 15
-    <PathType>k__BackingField: 0
+    <Duration>k__BackingField: 70
+    <PathType>k__BackingField: 1
     <PathMode>k__BackingField: 2
     <Ease>k__BackingField: 1
     <DispatcherCode>k__BackingField: C
@@ -67,16 +76,24 @@ MonoBehaviour:
       _serializedList:
       - Key: 0
         Value: 7
-      - Key: 0.12
+      - Key: 0.08
         Value: 8
-      - Key: 0.14
+      - Key: 0.1
         Value: 9
-      - Key: 0.14
+      - Key: 0.12
         Value: 10
-      - Key: 0.16
+      - Key: 0.14
         Value: 11
-      - Key: 0.6
+      - Key: 0.16
         Value: 12
+      - Key: 0.18
+        Value: 13
+      - Key: 0.2
+        Value: 14
+      - Key: 0.22
+        Value: 15
+      - Key: 0.6
+        Value: 14
       - Key: 0.65
         Value: 13
       - Key: 0.7

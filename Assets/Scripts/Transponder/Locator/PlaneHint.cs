@@ -58,6 +58,9 @@ namespace Transponder.Locator
 
         public void SetHeightTitle(string heightText) => 
             _heightTitle.text = heightText;
+        
+        public void SetSpeedTitle(string speedText) => 
+            _speedTitle.text = speedText;
 
         public void SetState(bool isIDENT, bool isSelected)
         {

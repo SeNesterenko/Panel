@@ -51,6 +51,14 @@ MonoBehaviour:
         Value: 16
       - Key: 0.93
         Value: 15
+    <PathSpeed>k__BackingField:
+      _serializedList:
+      - Key: 0.1
+        Value: 200
+      - Key: 0.5
+        Value: 1000
+      - Key: 0.9
+        Value: 100
     <RestartTime>k__BackingField: 0
     <MaxHeight>k__BackingField: 20
   - PathPoints:
@@ -109,6 +117,14 @@ MonoBehaviour:
         Value: 8
       - Key: 0.95
         Value: 7
+    <PathSpeed>k__BackingField:
+      _serializedList:
+      - Key: 0.1
+        Value: 100
+      - Key: 0.3
+        Value: 700
+      - Key: 0.9
+        Value: 300
     <RestartTime>k__BackingField: 5
     <MaxHeight>k__BackingField: 15
   <HintOffset>k__BackingField: {x: 100, y: 100, z: 0}

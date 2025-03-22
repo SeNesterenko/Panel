@@ -182,6 +182,7 @@ namespace Transponder.Locator
         {
             UpdateHintPosition();
             SetHeightTitle();
+            SetSpeedTitle();
         }
 
         private void UpdateHintPosition()
@@ -190,6 +191,20 @@ namespace Transponder.Locator
                 return;
 
             _planeHint.transform.position = _planeView.transform.position + _hintOffset;
+        }
+        
+        private void SetSpeedTitle() => 
+            _planeHint.SetSpeedTitle(GetCurrentSpeed());
+
+        private string GetCurrentSpeed()
+        {
+            var progress = _viewTween.ElapsedPercentage();
+            var result = 0;
+
+            foreach (var t in _configData.PathSpeed.Where(t => progress >= t.Key)) 
+                result = t.Value;
+
+            return $"Km{result}";
         }
 
         private void SetHeightTitle() => 

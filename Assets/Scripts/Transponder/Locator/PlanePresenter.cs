@@ -166,7 +166,8 @@ namespace Transponder.Locator
         private void EnablePlaneObjects(bool isEnable)
         {
             _planeHint.gameObject.SetActive(isEnable);
-            _planeView.gameObject.SetActive(isEnable);
+            _planeView.SetActive(isEnable);
+            _uiLineDrawer.gameObject.SetActive(isEnable);
         }
 
         private void OnDOTWeenUpdate()

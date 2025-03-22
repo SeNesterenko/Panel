@@ -2,6 +2,7 @@ using DefaultNamespace.Services.Windows;
 using JetBrains.Annotations;
 using SimpleEventBus;
 using SimpleEventBus.Disposables;
+using TheoryWindow;
 using Transponder;
 using Transponder.Events;
 using UnityEngine;
@@ -13,15 +14,20 @@ namespace MainMenu
     {
         private readonly ITransponderService _transponderService;
         private readonly IWindowFactory _windowFactory;
+        private readonly ITheoryWindowService _theoryWindowService;
         private readonly CompositeDisposable _subscriptions;
         
         private MenuWindow _window;
 
-        public MenuWindowService(ITransponderService transponderService, IWindowFactory windowFactory)
+        public MenuWindowService(
+            ITransponderService transponderService,
+            IWindowFactory windowFactory,
+            ITheoryWindowService theoryWindowService)
         {
             _transponderService = transponderService;
             _windowFactory = windowFactory;
-            
+            _theoryWindowService = theoryWindowService;
+
             _subscriptions = new CompositeDisposable(EventStreams.Game.Subscribe<OnBackButtonClickedEvent>(OnShowEventReceived));
         }
 
@@ -48,8 +54,8 @@ namespace MainMenu
         private void OnShowEventReceived(OnBackButtonClickedEvent eventData) => 
             ShowWindow();
 
-        public void OnTheoryButtonClicked() => 
-            Debug.Log("Theory button clicked");
+        public void OnTheoryButtonClicked() =>
+            _theoryWindowService.ShowWindow();
 
         public void OnExitButtonClicked() => 
             Application.Quit();

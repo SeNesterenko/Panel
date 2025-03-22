@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _windows:
     _serializedList:
+    - Key: 2
+      Value: {fileID: 8079055306113903939, guid: 176e947d5d3493d47aa41a9a71cf1952, type: 3}
     - Key: 0
       Value: {fileID: 8016904067550379338, guid: 72614fc164cf42544b5d62ba8c1df7f8, type: 3}
     - Key: 1

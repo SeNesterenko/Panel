@@ -1,5 +1,6 @@
 using DefaultNamespace.Services.Windows;
 using MainMenu;
+using TheoryWindow;
 using Transponder;
 using Transponder.Locator;
 using Transponder.Panel;
@@ -29,6 +30,7 @@ namespace DefaultNamespace.Services
             builder.Register<IWindowFactory, WindowFactory>(Lifetime.Singleton);
             builder.Register<IPlanesFactory, PlanesFactory>(Lifetime.Singleton);
             builder.Register<IPlanesConfigProvider, PlanesConfigProvider>(Lifetime.Singleton);
+            builder.Register<ITheoryWindowService, TheoryWindowService>(Lifetime.Singleton);
         }
     }
 }

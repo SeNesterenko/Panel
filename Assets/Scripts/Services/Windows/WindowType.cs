@@ -4,5 +4,6 @@ namespace DefaultNamespace.Services.Windows
     {
         TransponderWindow,
         MenuWindow,
+        TheoryWindow,
     }
 }

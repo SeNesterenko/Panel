@@ -21,5 +21,6 @@ namespace Transponder.Locator
         [field: SerializeField] public string DispatcherComment { get; private set; }
         [field: SerializeField] public SerializedDictionary<float, int> PathHeight { get; private set; }
         [field: SerializeField] public int RestartTime { get; private set; }
+        [field: SerializeField] public int MaxHeight { get; private set; }
     }
 }

@@ -27,6 +27,8 @@ namespace Transponder.Locator
 
         private readonly IReadOnlyList<Vector3> _pathPoints;
         private readonly PlaneConfigData _configData;
+        
+        private readonly List<KeyValuePair<float, int>> _pathHeightList;
 
         private TweenerCore<Vector3, Path, PathOptions> _viewTween;
 
@@ -40,6 +42,8 @@ namespace Transponder.Locator
 
         private CancellationTokenSource _cts;
         private bool _isVFRActive;
+        private int _previousHeight = -1;
+        private int _lastArrowHeight = -1;
 
         public PlanePresenter(
             PlaneView planeView,
@@ -59,6 +63,7 @@ namespace Transponder.Locator
             _pathPoints = configData.PathPoints;
             _currentResponderCode = configData.DefaultResponderCode;
             _planeHint.Initialize(configData.DefaultResponderCode, configData.DispatcherCode, _configData.DispatcherComment, this);
+            _pathHeightList = _configData.PathHeight.ToList();
         }
         
         public void Initialize(IEventReceiver eventReceiver) => 
@@ -160,6 +165,9 @@ namespace Transponder.Locator
             await UniTask.Delay(_configData.RestartTime * 1000, cancellationToken: _cts.Token);
             EnablePlaneObjects(true);
             
+            _previousHeight = -1;
+            _lastArrowHeight = -1;
+            
             StartMove();
         }
 
@@ -192,10 +200,28 @@ namespace Transponder.Locator
             var progress = _viewTween.ElapsedPercentage();
             var result = 0;
 
-            foreach (var height in _configData.PathHeight.Where(height => progress >= height.Key))
-                result = height.Value;
+            foreach (var t in _pathHeightList.Where(t => progress >= t.Key)) 
+                result = t.Value;
+
+            if (result == _configData.MaxHeight)
+                return $"AF00{result}";
             
-            return $"AF00{result}";
+            if (result == _previousHeight)
+                return $"AF00{result}{(_lastArrowHeight == result ? "" : result > _lastArrowHeight ? "↑" : "↓")}";
+
+            var arrow = "";
+            if (_previousHeight != -1)
+            {
+                if (result > _previousHeight && result < _configData.MaxHeight)
+                    arrow = "↑";
+                else if (result < _previousHeight) 
+                    arrow = "↓";
+            }
+            
+            _lastArrowHeight = _previousHeight;
+            _previousHeight = result;
+
+            return $"AF00{result}{arrow}";
         }
 
         private void ResetToken()

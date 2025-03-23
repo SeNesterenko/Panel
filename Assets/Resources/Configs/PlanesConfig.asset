@@ -53,12 +53,24 @@ MonoBehaviour:
         Value: 15
     <PathSpeed>k__BackingField:
       _serializedList:
+      - Key: 0
+        Value: 180
+      - Key: 0.05
+        Value: 175
       - Key: 0.1
-        Value: 200
-      - Key: 0.5
-        Value: 1000
-      - Key: 0.9
-        Value: 100
+        Value: 170
+      - Key: 0.12
+        Value: 165
+      - Key: 0.17
+        Value: 170
+      - Key: 0.19
+        Value: 180
+      - Key: 0.23
+        Value: 190
+      - Key: 0.82
+        Value: 185
+      - Key: 0.87
+        Value: 180
     <RestartTime>k__BackingField: 0
     <MaxHeight>k__BackingField: 20
   - PathPoints:
@@ -119,12 +131,36 @@ MonoBehaviour:
         Value: 7
     <PathSpeed>k__BackingField:
       _serializedList:
+      - Key: 0
+        Value: 150
+      - Key: 0.05
+        Value: 160
       - Key: 0.1
-        Value: 100
+        Value: 170
       - Key: 0.3
-        Value: 700
+        Value: 175
+      - Key: 0.35
+        Value: 180
+      - Key: 0.42
+        Value: 190
+      - Key: 0.45
+        Value: 185
+      - Key: 0.47
+        Value: 180
+      - Key: 0.5
+        Value: 175
+      - Key: 0.55
+        Value: 170
+      - Key: 0.58
+        Value: 165
+      - Key: 0.65
+        Value: 170
+      - Key: 0.7
+        Value: 165
+      - Key: 0.8
+        Value: 150
       - Key: 0.9
-        Value: 300
+        Value: 155
     <RestartTime>k__BackingField: 5
     <MaxHeight>k__BackingField: 15
   <HintOffset>k__BackingField: {x: 100, y: 100, z: 0}

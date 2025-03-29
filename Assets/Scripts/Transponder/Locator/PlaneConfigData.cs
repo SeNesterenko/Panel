@@ -23,5 +23,6 @@ namespace Transponder.Locator
         [field: SerializeField] public SerializedDictionary<float, int> PathSpeed { get; private set; }
         [field: SerializeField] public int RestartTime { get; private set; }
         [field: SerializeField] public int MaxHeight { get; private set; }
+        [field: SerializeField] public float UpdatePositionTime { get; private set; }
     }
 }

@@ -9,6 +9,7 @@ namespace Transponder.Locator
     {
         private const string PLANE_VIEW_PREFAB_PATH = "Prefabs/Plane";
         private const string PLANE_HINT_PREFAB_PATH = "Prefabs/PlaneHint";
+        private const string INVISIBLE_MOVEMENT_OBJECT_PREFAB_PATH = "Prefabs/InvisibleMovementObject";
         private const string PATH_POINT_PREFAB_PATH = "Prefabs/PathPoint";
         private const string UI_LINE_PREFAB_PATH = "Prefabs/UiLineDrawer";
         
@@ -18,6 +19,7 @@ namespace Transponder.Locator
         private PlaneHint _planeHintPrefab;
         private PathPointObject _pathPointObjectPrefab;
         private UILineDrawer _uiLinePrefab;
+        private InvisibleMovementObject _invisibleMovementObjectPrefab;
 
         public PlanesFactory(IPlanesConfigProvider configProvider) => 
             _configProvider = configProvider;
@@ -30,9 +32,10 @@ namespace Transponder.Locator
             {
                 var planeView = Object.Instantiate(GetPlanePrefab(), root);
                 var planeHint = Object.Instantiate(GetPlaneHintPrefab(), root);
+                var invisibleMovementObject = Object.Instantiate(GetInvisibleMovementObjectPrefab(), root);
                 var uiLine = Object.Instantiate(GetUILinePrefab(), root);
 
-                var planePresenter = new PlanePresenter(planeView, planeHint, uiLine, _configProvider.HintOffset, data);
+                var planePresenter = new PlanePresenter(planeView, planeHint, uiLine, _configProvider.HintOffset, data, invisibleMovementObject);
                 result.Add(planePresenter);
 
                 var pathPointsObjects = new List<PathPointObject>();
@@ -61,5 +64,8 @@ namespace Transponder.Locator
         
         private UILineDrawer GetUILinePrefab() =>
             _uiLinePrefab ? _uiLinePrefab : _uiLinePrefab = Resources.Load<UILineDrawer>(UI_LINE_PREFAB_PATH);
+        
+        private InvisibleMovementObject GetInvisibleMovementObjectPrefab() =>
+            _invisibleMovementObjectPrefab ? _invisibleMovementObjectPrefab : _invisibleMovementObjectPrefab = Resources.Load<InvisibleMovementObject>(INVISIBLE_MOVEMENT_OBJECT_PREFAB_PATH);
     }
 }

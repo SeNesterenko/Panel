@@ -27,7 +27,8 @@ namespace Transponder.Locator
 
         private readonly IReadOnlyList<Vector3> _pathPoints;
         private readonly PlaneConfigData _configData;
-        
+        private readonly InvisibleMovementObject _invisibleMovementObject;
+
         private readonly List<KeyValuePair<float, int>> _pathHeightList;
 
         private TweenerCore<Vector3, Path, PathOptions> _viewTween;
@@ -44,20 +45,23 @@ namespace Transponder.Locator
         private bool _isVFRActive;
         private int _previousHeight = -1;
         private int _lastArrowHeight = -1;
+        private float _timeSinceLastUpdate;
 
         public PlanePresenter(
             PlaneView planeView,
             PlaneHint planeHint,
             UILineDrawer uiLineDrawer,
             Vector3 hintOffset,
-            PlaneConfigData configData)
+            PlaneConfigData configData,
+            InvisibleMovementObject invisibleMovementObject)
         {
             _planeView = planeView;
             _planeHint = planeHint;
             _uiLineDrawer = uiLineDrawer;
             _hintOffset = hintOffset;
             _configData = configData;
-            
+            _invisibleMovementObject = invisibleMovementObject;
+
             _isShow = true;
             
             _pathPoints = configData.PathPoints;
@@ -115,11 +119,12 @@ namespace Transponder.Locator
         public void StartMove()
         {
             _planeView.transform.position = _pathPoints[0];
+            _invisibleMovementObject.transform.position = _pathPoints[0];
             _planeHint.transform.position = _pathPoints[0] + _hintOffset;
             
             _viewTween.Kill();
 
-            _viewTween = _planeView.transform
+            _viewTween = _invisibleMovementObject.transform
                 .DOPath(_pathPoints.ToArray(), _configData.Duration, _configData.PathType, _configData.PathMode)
                 .SetLookAt(0.01f)
                 .SetEase(_configData.Ease)
@@ -181,8 +186,21 @@ namespace Transponder.Locator
         private void OnDOTWeenUpdate()
         {
             UpdateHintPosition();
+            UpdatePlanePosition();
             SetHeightTitle();
             SetSpeedTitle();
+        }
+
+        private void UpdatePlanePosition()
+        {
+            _timeSinceLastUpdate += Time.deltaTime;
+            if (!(_timeSinceLastUpdate >= _configData.UpdatePositionTime)) 
+                return;
+            
+            _timeSinceLastUpdate = 0f;
+
+            _planeView.transform.rotation = _invisibleMovementObject.transform.rotation;
+            _planeView.transform.position = _invisibleMovementObject.transform.position;
         }
 
         private void UpdateHintPosition()

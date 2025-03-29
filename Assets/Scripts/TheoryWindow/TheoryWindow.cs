@@ -12,8 +12,12 @@ namespace TheoryWindow
         }
 
         [SerializeField] private Button _closeButton;
+        [SerializeField] private ScrollRect _scroll;
 
-        public void Initialize(IEventReceiver eventReceiver) => 
+        public void Initialize(IEventReceiver eventReceiver)
+        {
             _closeButton.onClick.AddListener(eventReceiver.OnCloseButtonClicked);
+            _scroll.verticalNormalizedPosition = 1;
+        }
     }
 }

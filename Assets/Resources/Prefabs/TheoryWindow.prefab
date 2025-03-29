@@ -57,6 +57,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 8905476435454905011}
   _closeButton: {fileID: 3811079199013985528}
+  _scroll: {fileID: 1386907208067340145}
 --- !u!223 &5550508432296478724
 Canvas:
   m_ObjectHideFlags: 0
@@ -211,8 +212,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 28.3698, y: 0}
-  m_SizeDelta: {x: -69.1219, y: 2442.306}
+  m_AnchoredPosition: {x: 28.3698, y: 2287.4358}
+  m_SizeDelta: {x: -69.1219, y: 3226.055}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1867233703546636810
 MonoBehaviour:
@@ -494,8 +495,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4221266241000444188}
   m_HandleRect: {fileID: 5995522064129036305}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.38431674
+  m_Value: 0
+  m_Size: 0.2909495
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1056,8 +1057,8 @@ MonoBehaviour:
   m_MovementType: 1
   m_Elasticity: 0.1
   m_Inertia: 1
-  m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_DecelerationRate: 15.24
+  m_ScrollSensitivity: 5
   m_Viewport: {fileID: 3022985533857195203}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 5651285417506287930}

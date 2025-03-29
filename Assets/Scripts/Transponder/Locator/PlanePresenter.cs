@@ -219,7 +219,11 @@ namespace Transponder.Locator
                 result = t.Value;
 
             if (result == _configData.MaxHeight)
+            {
+                _lastArrowHeight = _previousHeight;
+                _previousHeight = result;
                 return $"AF00{result}";
+            }
             
             if (result == _previousHeight)
                 return $"AF00{result}{(_lastArrowHeight == result ? "" : result > _lastArrowHeight ? "↑" : "↓")}";

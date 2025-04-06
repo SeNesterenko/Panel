@@ -54,7 +54,7 @@ namespace Transponder
         public void Dispose()
         {
             _locatorController?.Dispose();
-            _panelController?.Dispose();
+            _panelController?.CleanUp();
         }
     }
 }

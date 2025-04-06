@@ -9,6 +9,7 @@ using Transponder.Events;
 using Transponder.Panel.Buttons;
 using Transponder.Panel.Buttons.Presenters;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Transponder.Panel
 {
@@ -157,9 +158,12 @@ namespace Transponder.Panel
             _cts.Dispose();
         }
 
-        public void Dispose()
+        public void CleanUp()
         {
             ResetCancellationToken();
+
+            foreach (var button in _buttons)
+                Object.Destroy(button.GetObject());
 
             if (_buttons is { Count: > 0 })
                 _buttons.Clear();
@@ -167,5 +171,8 @@ namespace Transponder.Panel
             _factory.Dispose();
             _subscriptions?.Dispose();
         }
+
+        public void Dispose() => 
+            CleanUp();
     }
 }

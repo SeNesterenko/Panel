@@ -1,5 +1,6 @@
 using SimpleEventBus;
 using Transponder.Events;
+using UnityEngine;
 
 namespace Transponder.Panel.Buttons.Presenters
 {
@@ -42,6 +43,9 @@ namespace Transponder.Panel.Buttons.Presenters
             _buttonView.RemoveEventReceiver();
             _buttonView.SetEventReceiver(this);
         }
+
+        public GameObject GetObject() => 
+            _buttonView ? _buttonView.gameObject : null;
 
         protected virtual void HandleActionButton() { }
     }

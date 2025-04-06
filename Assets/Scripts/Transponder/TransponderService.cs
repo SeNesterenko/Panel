@@ -29,7 +29,7 @@ namespace Transponder
         public void ShowWindow()
         {
             _window ??= _windowFactory.CreateWindow<TransponderWindow>(WindowType.TransponderWindow);
-            
+
             if (_window is null)
             {
                 Debug.LogError($"{nameof(_window)} is null");

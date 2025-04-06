@@ -200,7 +200,7 @@ namespace Transponder.Locator
             _timeSinceLastUpdate = 0f;
 
             _planeView.transform.rotation = _invisibleMovementObject.transform.rotation;
-            _planeView.transform.position = _invisibleMovementObject.transform.position * 0.71f;
+            _planeView.transform.position = _invisibleMovementObject.transform.position * (Screen.width / 1920f);
         }
 
         private void UpdateHintPosition()

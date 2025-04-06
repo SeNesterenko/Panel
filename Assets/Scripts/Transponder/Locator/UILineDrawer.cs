@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,6 +7,7 @@ namespace Transponder.Locator
     public class UILineDrawer : MonoBehaviour
     {
         [SerializeField] private Image _lineImage;
+        [SerializeField] private RectTransform rt;
 
         [SerializeField] private Color _selectColor;
         [SerializeField] private Color _identColor;
@@ -20,6 +22,11 @@ namespace Transponder.Locator
             _endPoint = endPoint;
             
             _lineImage.transform.SetAsFirstSibling();
+            
+            var scale = rt.localScale;
+            scale.x = 1920f / Screen.width;
+            scale.x = (float)Math.Round(scale.x, 1);
+            rt.localScale = scale;
         }
         
         public void SetState(bool isIDENT, bool isSelected) =>

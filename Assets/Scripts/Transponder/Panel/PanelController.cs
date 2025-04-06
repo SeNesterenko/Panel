@@ -151,7 +151,7 @@ namespace Transponder.Panel
 
         private void ResetCancellationToken()
         {
-            if (_cts is null || _cts.IsCancellationRequested) 
+            if (_cts is null || _cts.IsCancellationRequested)
                 return;
             
             _cts.Cancel();

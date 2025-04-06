@@ -25,7 +25,6 @@ namespace Transponder.Locator
             
             var scale = rt.localScale;
             scale.x = 1920f / Screen.width;
-            scale.x = (float)Math.Round(scale.x, 1);
             rt.localScale = scale;
         }
         

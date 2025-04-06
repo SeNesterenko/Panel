@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using AYellowpaper.SerializedCollections;
 using JetBrains.Annotations;
 using SimpleEventBus;
 using SimpleEventBus.Disposables;
@@ -28,9 +29,9 @@ namespace Transponder.Locator
                 EventStreams.Game.Subscribe<OnNewResponderCodeEnteredEvent>(OnNewResponderCodeEntered));
         }
 
-        public void Initialize(Transform planeContainer)
+        public async void Initialize(Transform planeContainer, SerializedDictionary<int, List<Transform>> pathPoints)
         {
-            _presenters = _planesFactory.CreatePlanes(planeContainer);
+            _presenters = await _planesFactory.CreatePlanes(planeContainer, pathPoints);
 
             foreach (var planePresenter in _presenters)
             {

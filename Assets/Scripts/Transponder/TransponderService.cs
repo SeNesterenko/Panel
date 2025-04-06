@@ -40,7 +40,7 @@ namespace Transponder
             _window.SetEventReceiver(this);
             
             _panelController.Initialize(_window.PanelView);
-            _locatorController.Initialize(_window.PlaneContainer);
+            _locatorController.Initialize(_window.PlaneContainer, _window.PathPoints);
         }
 
         public void OnCloseButtonClicked()

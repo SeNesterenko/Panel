@@ -53,7 +53,8 @@ namespace Transponder.Locator
             UILineDrawer uiLineDrawer,
             Vector3 hintOffset,
             PlaneConfigData configData,
-            InvisibleMovementObject invisibleMovementObject)
+            InvisibleMovementObject invisibleMovementObject,
+            List<Vector3> pathPoints)
         {
             _planeView = planeView;
             _planeHint = planeHint;
@@ -64,7 +65,7 @@ namespace Transponder.Locator
 
             _isShow = true;
             
-            _pathPoints = configData.PathPoints;
+            _pathPoints = pathPoints;
             _currentResponderCode = configData.DefaultResponderCode;
             _planeHint.Initialize(configData.DefaultResponderCode, configData.DispatcherCode, _configData.DispatcherComment, this);
             _pathHeightList = _configData.PathHeight.ToList();

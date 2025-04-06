@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using AYellowpaper.SerializedCollections;
 using Services.Windows;
 using Transponder.Panel;
 using UnityEngine;
@@ -16,7 +18,8 @@ namespace Transponder
         
         [field: SerializeField] public PanelView PanelView { get; private set; }
         [field: SerializeField] public Transform PlaneContainer { get; private set; }
-        
+        [field: SerializeField] public SerializedDictionary<int, List<Transform>> PathPoints { get; private set; }
+
         public void SetEventReceiver(IEventReceiver eventReceiver) =>
             _closeButton.onClick.AddListener(eventReceiver.OnCloseButtonClicked);
     }

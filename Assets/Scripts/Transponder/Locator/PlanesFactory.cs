@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using AYellowpaper.SerializedCollections;
+using Cysharp.Threading.Tasks;
 using JetBrains.Annotations;
 using UnityEngine;
 
@@ -24,28 +26,32 @@ namespace Transponder.Locator
         public PlanesFactory(IPlanesConfigProvider configProvider) => 
             _configProvider = configProvider;
 
-        public List<PlanePresenter> CreatePlanes(Transform root)
+        public async UniTask<List<PlanePresenter>> CreatePlanes(Transform root, SerializedDictionary<int, List<Transform>> pathPoints)
         {
+            await UniTask.DelayFrame(1);
             var result = new List<PlanePresenter>();
-            
-            foreach (var data in _configProvider.PlanesConfig)
+
+            for (var index = 0; index < _configProvider.PlanesConfig.Count; index++)
             {
+                var data = _configProvider.PlanesConfig[index];
                 var planeView = Object.Instantiate(GetPlanePrefab(), root);
                 var planeHint = Object.Instantiate(GetPlaneHintPrefab(), root);
                 var invisibleMovementObject = Object.Instantiate(GetInvisibleMovementObjectPrefab(), root);
                 var uiLine = Object.Instantiate(GetUILinePrefab(), root);
 
-                var planePresenter = new PlanePresenter(planeView, planeHint, uiLine, _configProvider.HintOffset, data, invisibleMovementObject);
+                var planePresenter = new PlanePresenter(planeView, planeHint, uiLine, _configProvider.HintOffset, data,
+                    invisibleMovementObject, pathPoints[index].ConvertAll(p => p.position));
                 result.Add(planePresenter);
 
                 var pathPointsObjects = new List<PathPointObject>();
                 for (var i = 0; i < _configProvider.CountPathPointsObjects; i++)
                 {
-                    var pathPointObject = Object.Instantiate(GetPathPointPrefab(), root).GetComponent<PathPointObject>();
+                    var pathPointObject =
+                        Object.Instantiate(GetPathPointPrefab(), root).GetComponent<PathPointObject>();
                     pathPointObject.gameObject.SetActive(false);
                     pathPointsObjects.Add(pathPointObject);
                 }
-                
+
                 planeView.Initialize(pathPointsObjects);
                 uiLine.Initialize(planeHint.LineRendererTarget, planeView.LineRendererTarget);
             }

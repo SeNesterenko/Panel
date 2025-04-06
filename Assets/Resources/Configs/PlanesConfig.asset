@@ -73,7 +73,7 @@ MonoBehaviour:
         Value: 180
     <RestartTime>k__BackingField: 0
     <MaxHeight>k__BackingField: 20
-    <UpdatePositionTime>k__BackingField: 2
+    <UpdatePositionTime>k__BackingField: 0
   - PathPoints:
     - {x: 1110.4, y: 460.7, z: 0}
     - {x: 1093.8, y: 439, z: 0}
@@ -164,7 +164,7 @@ MonoBehaviour:
         Value: 155
     <RestartTime>k__BackingField: 5
     <MaxHeight>k__BackingField: 15
-    <UpdatePositionTime>k__BackingField: 2
+    <UpdatePositionTime>k__BackingField: 0
   <HintOffset>k__BackingField: {x: 100, y: 100, z: 0}
   <CountPathPointsObjects>k__BackingField: 3
   _indexToUpdate: 1

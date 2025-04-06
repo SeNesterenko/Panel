@@ -10,7 +10,6 @@ public class MainCanvasScaler : MonoBehaviour
     
     private void Awake()
     {
-        Debug.Log(Screen.width / 1920f);
         _canvasScaler.scaleFactor = Screen.width / 1920f;
     }
 }
